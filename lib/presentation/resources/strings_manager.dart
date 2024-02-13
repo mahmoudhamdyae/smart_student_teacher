@@ -42,6 +42,9 @@ class AppStrings {
   static const String bottomBarCourses = 'الكورسات';
   static const String bottomBarSubscriptions = 'الاشتراكات';
   static const String bottomBarComments = 'التعليقات';
+  static const String noCourses = 'لا يوجد كورسات';
+  static const String monthly = 'شهريا';
+  static const String termly = 'ترم كامل';
 
   // Error
   static const String error = 'حدث خطأ';

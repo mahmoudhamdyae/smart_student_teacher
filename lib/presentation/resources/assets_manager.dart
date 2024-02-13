@@ -3,9 +3,10 @@ const String jsonPath = "assets/json";
 
 class ImageAssets {
   static const String login = "$imagePath/login.png";
-  static const String user = "$imagePath/user.svg";
+  static const String user = "$imagePath/user.png";
   static const String empty = "$imagePath/empty.png";
   static const String error = "$imagePath/error.svg";
+  static const String course = "$imagePath/course.png";
 }
 
 class JsonAssets {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:teacher/presentation/screens/comments/widgets/comments_screen.dart';
-import 'package:teacher/presentation/screens/courses/widgets/courses_screen.dart';
+import 'package:teacher/presentation/screens/courses/screens/courses_screen.dart';
 import 'package:teacher/presentation/screens/subscriptions/widgets/subscriptions_screen.dart';
 import '../resources/color_manager.dart';
 import '../resources/constants_manager.dart';
