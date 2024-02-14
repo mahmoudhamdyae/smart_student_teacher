@@ -16,29 +16,32 @@ class CoursesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        shrinkWrap: true,
-        physics: const ClampingScrollPhysics(),
-        children: [
-          HomeAppBar(),
-          GetX<CoursesController>(
-            init: Get.find<CoursesController>(),
-            builder: (CoursesController controller) {
-              if (controller.status.isLoading) {
-                return const LoadingScreen();
-              } else if (controller.status.isError) {
-                return ErrorScreen(error: controller.status.errorMessage ?? '');
-              } else if (controller.courses.isEmpty){
-                return const EmptyScreen(emptyString: AppStrings.noCourses);
-              } else {
-                final List<Course> courses = controller.courses;
-                return CoursesList(
-                  courses: courses,
-                );
-              }
-            },
-          ),
-        ],),
+      body: RefreshIndicator(
+        onRefresh: () async => await Get.find<CoursesController>().getCourses(),
+        child: ListView(
+          shrinkWrap: true,
+          physics: const AlwaysScrollableScrollPhysics(),
+          children: [
+            HomeAppBar(),
+            GetX<CoursesController>(
+              init: Get.find<CoursesController>(),
+              builder: (CoursesController controller) {
+                if (controller.status.isLoading) {
+                  return const LoadingScreen();
+                } else if (controller.status.isError) {
+                  return ErrorScreen(error: controller.status.errorMessage ?? '');
+                } else if (controller.courses.isEmpty){
+                  return const EmptyScreen(emptyString: AppStrings.noCourses);
+                } else {
+                  final List<Course> courses = controller.courses;
+                  return CoursesList(
+                    courses: courses,
+                  );
+                }
+              },
+            ),
+          ],),
+      ),
     );
   }
 }

@@ -33,13 +33,13 @@ class CoursesController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _getCourses();
+    getCourses();
   }
 
-  void _getCourses() {
+  Future<void> getCourses() async {
     _status.value = RxStatus.loading();
     try {
-      _repository.getCourses().then((remoteCourses) {
+      await _repository.getCourses().then((remoteCourses) {
         _status.value = RxStatus.success();
         courses.value = remoteCourses;
       });

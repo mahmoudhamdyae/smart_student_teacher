@@ -17,7 +17,7 @@ class CoursesList extends StatelessWidget {
   ListView _buildListView() {
     return ListView.builder(
       shrinkWrap: true,
-      physics: const ClampingScrollPhysics(),
+      physics: const AlwaysScrollableScrollPhysics(),
       itemCount: courses.length,
       itemBuilder: (BuildContext context, int index) {
         return CourseItem(course: courses[index]);
@@ -28,7 +28,7 @@ class CoursesList extends StatelessWidget {
   Widget _buildGridView(BuildContext context) {
     return GridView.count(
       shrinkWrap: true,
-      physics: const ClampingScrollPhysics(),
+      physics: const AlwaysScrollableScrollPhysics(),
       crossAxisCount:(MediaQuery.of(context).size.width ~/ 350).toInt(),
       childAspectRatio: 2.2,
       children: List.generate(courses.length, (index) {
