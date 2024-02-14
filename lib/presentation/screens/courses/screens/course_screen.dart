@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:teacher/core/utils/insets.dart';
 import 'package:teacher/presentation/screens/courses/controller/courses_controller.dart';
 
 import '../../../../domain/models/course.dart';
@@ -22,88 +23,7 @@ class CourseScreen extends StatelessWidget {
         children: [
           SizedBox(
             height: double.infinity,
-            child: ListView(
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
-              children: [
-                Image.asset(
-                  ImageAssets.course,
-                  height: 240,
-                ),
-                // Subject Name
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        course.name ?? '',
-                        style: getLargeStyle(),
-                      ),
-                      // 5 وحدات - 32 درس
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Text(
-                          '5 وحدات - 32 درس',
-                          style: getSmallStyle(),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Stack(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        PriceWidget(price: course.month ?? 0, month: AppStrings.monthly,),
-                        PriceWidget(price: course.term ?? 0, month: AppStrings.termly,),
-                      ],
-                    ),
-                    const Positioned(
-                        right: 0,
-                        left: 0,
-                        top: 0,
-                        bottom: 0,
-                        child: VerticalDivider(width: 1, color: ColorManager.lightGrey,)
-                    )
-                  ],
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-                  child: Divider(height: 1, color: Color(0xffF2F2F2),),
-                ),
-                // المدرس
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Text(
-                    AppStrings.courseTeacher,
-                    style: getLargeStyle(),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        ImageAssets.user,
-                        height: 40,
-                        width: 40,
-                      ),
-                      // Teacher Name
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text(
-                          course.teacher ?? '',
-                          style: getSmallStyle(),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 64.0,),
-              ],
-            ),
+            child: isWide(context) ? _buildTwoColumn() : _buildOneColumn(),
           ),
           // Back Button
           IconButton(
@@ -144,6 +64,121 @@ class CourseScreen extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildOneColumn() {
+    return ListView(
+            shrinkWrap: true,
+            physics: const ClampingScrollPhysics(),
+            children: [
+              _buildCourseImage(),
+              _buildList(),
+            ],
+          );
+  }
+
+  Widget _buildTwoColumn() {
+    return Row(
+      children: [
+        Expanded(
+            flex: 2,
+            child: _buildCourseImage(),
+        ),
+        const SizedBox(width: 16.0,),
+        Expanded(
+            flex: 3,
+            child: _buildList(),
+        ),
+      ],
+    );
+  }
+
+  Image _buildCourseImage() {
+    return Image.asset(
+              ImageAssets.course,
+              height: 240,
+            );
+  }
+
+  Widget _buildList() {
+    return ListView(
+      shrinkWrap: true,
+      physics: const ClampingScrollPhysics(),
+      children: [
+        // Subject Name
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                course.name ?? '',
+                style: getLargeStyle(),
+              ),
+              // 5 وحدات - 32 درس
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  '5 وحدات - 32 درس',
+                  style: getSmallStyle(),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Stack(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                PriceWidget(price: course.month ?? 0, month: AppStrings.monthly,),
+                PriceWidget(price: course.term ?? 0, month: AppStrings.termly,),
+              ],
+            ),
+            const Positioned(
+                right: 0,
+                left: 0,
+                top: 0,
+                bottom: 0,
+                child: VerticalDivider(width: 1, color: ColorManager.lightGrey,)
+            )
+          ],
+        ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+          child: Divider(height: 1, color: Color(0xffF2F2F2),),
+        ),
+        // المدرس
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Text(
+            AppStrings.courseTeacher,
+            style: getLargeStyle(),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+          child: Row(
+            children: [
+              Image.asset(
+                ImageAssets.user,
+                height: 40,
+                width: 40,
+              ),
+              // Teacher Name
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(
+                  course.teacher ?? '',
+                  style: getSmallStyle(),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 64.0,)
+      ],
     );
   }
 }
