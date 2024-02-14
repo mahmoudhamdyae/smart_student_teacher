@@ -40,7 +40,8 @@ class CoursesScreen extends StatelessWidget {
                 }
               },
             ),
-          ],),
+          ],
+        ),
       ),
     );
   }
