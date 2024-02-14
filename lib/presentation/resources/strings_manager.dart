@@ -45,6 +45,17 @@ class AppStrings {
   static const String noCourses = 'لا يوجد كورسات';
   static const String monthly = 'شهريا';
   static const String termly = 'ترم كامل';
+  static const String watchFirstLesson = 'شاهد الدروس';
+  static const String courseTeacher = 'المدرس';
+  static const String emptyTutorials = 'لا يوجد وحدات';
+  static const String noComments = 'لم يتم إضافة اى تعليقات أو روابط على هذا الدرس';
+  static const String tabLessons = 'الدروس';
+  static const String tabAttachments = 'المرفقات';
+  static const String tabComments = 'تعليقات الدرس';
+  static const String notesTab = 'مذكرات الدرس';
+  static const String noteDownloading = 'جارى التحميل';
+  static const String noteDownloadError = 'حدث خطأ';
+  static const String noteDownloaded = 'تم تحميل المذكرة';
 
   // Error
   static const String error = 'حدث خطأ';

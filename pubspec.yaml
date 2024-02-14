@@ -45,6 +45,8 @@ dependencies:
   persistent_bottom_nav_bar: ^5.0.2
   lottie: ^2.3.1
   url_launcher: ^6.2.4
+  pod_player: ^0.2.1
+  flutter_media_downloader: ^1.0.4
 
 dev_dependencies:
   flutter_test:

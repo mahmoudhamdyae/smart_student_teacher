@@ -48,13 +48,13 @@ class CourseItem extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    course.name,
+                    course.name ?? '',
                     style: getLargeStyle(
                         fontWeight: FontWeight.w400
                     ),
                   ),
                   const SizedBox(height: 8.0,),
-                  PriceWidget(price: course.month, month: AppStrings.monthly,),
+                  PriceWidget(price: course.month ?? 0, month: AppStrings.monthly,),
                 ],
               ),
             ),
@@ -64,13 +64,13 @@ class CourseItem extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    course.marhala,
+                    course.marhala ?? '',
                     style: getSmallStyle(
                       color: const Color(0xff808080),
                     ),
                   ),
                   const SizedBox(height: 8.0,),
-                  PriceWidget(price: course.term, month: AppStrings.termly,),
+                  PriceWidget(price: course.term ?? 0, month: AppStrings.termly,),
                 ],
               ),
             ),
