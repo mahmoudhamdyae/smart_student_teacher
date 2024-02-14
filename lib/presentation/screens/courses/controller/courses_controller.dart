@@ -54,6 +54,7 @@ class CoursesController extends GetxController {
       _repository.getTutorials(course.value.id ?? -1).then((remoteTutorials) {
         _status.value = RxStatus.success();
         tutorials.value = remoteTutorials;
+        _selectedLesson.value = remoteTutorials[0].lessons[0];
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());

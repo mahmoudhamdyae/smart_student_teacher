@@ -96,7 +96,7 @@ class _LessonScreenState extends State<LessonScreen> {
                     ),
                   ),
                   Expanded(
-                    child: CourseTabs(link: controller.tutorials[0].lessons[0].pdf, courseId: controller.course.value.id ?? -1),
+                    child: CourseTabs(link: controller.selectedLesson.value.pdf, courseId: controller.course.value.id ?? -1),
                   ),
                 ],
               );
