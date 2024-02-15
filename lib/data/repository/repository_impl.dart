@@ -38,11 +38,13 @@ class RepositoryImpl extends Repository {
       _localDataSource.setUserId(data['user']['id']);
       _localDataSource.setUserName(data['user']['name']);
       _localDataSource.setUserLoggedIn();
+      _remoteDataSource.sendTokenAndUserId(_localDataSource.getUserId());
     });
   }
 
   @override
   Future<void> signOut() async {
+    _remoteDataSource.getFcmToken();
     return await _localDataSource.signOut();
   }
 
