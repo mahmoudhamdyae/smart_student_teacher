@@ -43,6 +43,8 @@ class AppStrings {
   static const String bottomBarSubscriptions = 'الاشتراكات';
   static const String bottomBarComments = 'التعليقات';
   static const String noCourses = 'لا يوجد كورسات';
+  static const String noSubscriptions = 'لا يوجد اشتراكات';
+  static const String noCommentsScreen = 'لا يوجد تعليقات';
   static const String monthly = 'شهريا';
   static const String termly = 'ترم كامل';
   static const String watchFirstLesson = 'شاهد الدروس';

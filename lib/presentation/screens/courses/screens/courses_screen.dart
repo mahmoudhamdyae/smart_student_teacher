@@ -32,12 +32,11 @@ class CoursesScreen extends StatelessWidget {
                   return ErrorScreen(error: controller.status.errorMessage ?? '');
                 } else if (controller.courses.isEmpty){
                   return const EmptyScreen(emptyString: AppStrings.noCourses);
-                } else {
-                  final List<Course> courses = controller.courses;
-                  return CoursesList(
-                    courses: courses,
-                  );
                 }
+                final List<Course> courses = controller.courses;
+                return CoursesList(
+                  courses: courses,
+                );
               },
             ),
           ],
