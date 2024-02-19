@@ -81,20 +81,7 @@ class _LessonScreenState extends State<LessonScreen> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 0.0,
-                      right: 16.0,
-                      left: 16.0,
-                      bottom: 16.0,
-                    ),
-                    child: Text(
-                      controller.course.value.teacher ?? '',
-                      style: getSmallStyle(
-                        color: const Color(0xff808080),
-                      ),
-                    ),
-                  ),
+                  const SizedBox(height: 16.0,),
                   Expanded(
                     child: CourseTabs(link: controller.selectedLesson.value.pdf, courseId: controller.course.value.id ?? -1),
                   ),

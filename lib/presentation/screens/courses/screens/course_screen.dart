@@ -149,34 +149,6 @@ class CourseScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
           child: Divider(height: 1, color: Color(0xffF2F2F2),),
         ),
-        // المدرس
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Text(
-            AppStrings.courseTeacher,
-            style: getLargeStyle(),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-          child: Row(
-            children: [
-              Image.asset(
-                ImageAssets.user,
-                height: 40,
-                width: 40,
-              ),
-              // Teacher Name
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Text(
-                  course.teacher ?? '',
-                  style: getSmallStyle(),
-                ),
-              ),
-            ],
-          ),
-        ),
         const SizedBox(height: 64.0,)
       ],
     );

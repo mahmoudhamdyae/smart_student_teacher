@@ -69,12 +69,11 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   Future<List<Course>> getCourses(int userId) async {
     await _checkNetwork();
 
-    String url = "${Constants.baseUrl}courses";
+    String url = "${Constants.baseUrl}teacher/courses/$userId";
     final response = await _dio.get(url);
 
     List<Course> courses = [];
-    // String s = convertSaff(marhala, 'course');
-    for (var singleCourse in response.data['coursesix']) {
+    for (var singleCourse in response.data['courses']) {
       Course course = Course.fromJson(singleCourse);
       courses.add(course);
     }

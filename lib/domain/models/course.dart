@@ -6,7 +6,6 @@ class Course {
   String? marhala;
   String? type;
   String? rate;
-  String? teacher;
 
   Course({
     this.id,
@@ -16,7 +15,6 @@ class Course {
     this.marhala,
     this.type,
     this.rate,
-    this.teacher
   });
 
   factory Course.fromJson(Map<String, dynamic> json) {
@@ -28,7 +26,6 @@ class Course {
       marhala: json['classroom'] as String? ?? '',
       type: json['type'] as String? ?? '',
       rate: '4.3',
-      teacher: json['techer']['name'] as String? ?? '',
     );
   }
 }
