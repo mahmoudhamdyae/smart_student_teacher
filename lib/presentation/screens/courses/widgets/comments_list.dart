@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:teacher/presentation/screens/courses/controller/courses_controller.dart';
+import 'package:teacher/presentation/screens/courses/widgets/comment_item.dart';
 
 import '../../../resources/strings_manager.dart';
 import '../../../resources/styles_manager.dart';
@@ -36,7 +37,7 @@ class CommentsList extends StatelessWidget {
           physics: const ClampingScrollPhysics(),
           itemCount: controller.comments.length,
           itemBuilder: (BuildContext context, int index) {
-            return Text(controller.comments[index].comment!);
+            return CommentItem(comment: controller.comments[index]);
           },
         );
       },
