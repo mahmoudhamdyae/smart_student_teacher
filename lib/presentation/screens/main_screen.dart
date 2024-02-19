@@ -26,12 +26,12 @@ class _MainScreenState extends State<MainScreen> {
         padding: EdgeInsets.only(bottom: 18.0),
         child: CoursesScreen(),
       ),
-      const Padding(
-        padding: EdgeInsets.only(bottom: 18.0),
+      Padding(
+        padding: const EdgeInsets.only(bottom: 18.0),
         child: SubscriptionsScreen(),
       ),
-      const Padding(
-        padding: EdgeInsets.only(bottom: 18.0),
+      Padding(
+        padding: const EdgeInsets.only(bottom: 18.0),
         child: CommentsScreen(),
       ),
     ];
