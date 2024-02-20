@@ -1,6 +1,5 @@
 class NotificationModel {
-  String text;
-  String time;
+  String? text;
 
-  NotificationModel(this.text, this.time);
+  NotificationModel({this.text});
 }

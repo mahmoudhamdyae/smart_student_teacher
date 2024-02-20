@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:teacher/domain/models/comment.dart';
 import 'package:teacher/domain/models/course.dart';
 
 import '../../core/constants.dart';
@@ -16,6 +19,8 @@ abstract class RemoteDataSource {
   // Remote Data Source
   Future<List<Course>> getCourses(int userId);
   Future<List<Wehda>> getTutorials(int courseId);
+  Future<List<Comment>> getComments(int userId);
+  Future<void> addComment(String comment, int userId, int videoId);
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -95,5 +100,31 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     }
 
     return wehdat;
+  }
+
+  @override
+  Future<List<Comment>> getComments(int userId) async {
+    await _checkNetwork();
+
+    String url = "${Constants.baseUrl}video/getComment/$userId";
+    final response = await _dio.get(url);
+
+    CommentResponse commentResponse = CommentResponse.fromJson(response.data);
+    return commentResponse.comments ?? [];
+  }
+
+  @override
+  Future<void> addComment(String comment, int userId, int videoId) async {
+    await _checkNetwork();
+    String url = "${Constants.baseUrl}video/addComment";
+
+    await _dio.post(
+      url,
+      data: jsonEncode({
+        'video_id': videoId,
+        'user_id': userId,
+        'comment': comment,
+      }),
+    );
   }
 }

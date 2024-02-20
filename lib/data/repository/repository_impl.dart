@@ -1,3 +1,4 @@
+import 'package:teacher/domain/models/comment.dart';
 import 'package:teacher/domain/models/course.dart';
 
 import 'package:teacher/domain/models/wehda.dart';
@@ -58,5 +59,15 @@ class RepositoryImpl extends Repository {
   @override
   Future<List<Wehda>> getTutorials(int courseId) {
     return _remoteDataSource.getTutorials(courseId);
+  }
+
+  @override
+  Future<List<Comment>> getComments() {
+    return _remoteDataSource.getComments(_localDataSource.getUserId());
+  }
+
+  @override
+  Future<void> addComment(String comment, int videoId) async {
+    return await _remoteDataSource.addComment(comment, _localDataSource.getUserId(), videoId);
   }
 }

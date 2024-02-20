@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:teacher/presentation/screens/comments/controller/comments_controller.dart';
+import 'package:teacher/presentation/screens/comments/widgets/reply_comment_screen.dart';
 
 import '../../../resources/strings_manager.dart';
 import '../../../widgets/empty_screen.dart';
@@ -29,16 +30,25 @@ class CommentsScreen extends StatelessWidget {
                   return const LoadingScreen();
                 } else if (controller.status.isError) {
                   return ErrorScreen(error: controller.status.errorMessage ?? '');
-                } else if (controller.notifications.isEmpty){
+                } else if (controller.comments.isEmpty){
                   return const EmptyScreen(emptyString: AppStrings.noCommentsScreen);
                 }
                 return ListView.builder(
                   shrinkWrap: true,
                   physics: const ClampingScrollPhysics(),
-                  itemCount: controller.notifications.length,
+                  itemCount: controller.comments.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return NotificationItem(
-                      notification: controller.notifications[index],
+                    return InkWell(
+                      onTap: () {
+                        Get.find<CommentsController>().selectedComment.value = controller.comments[index];
+                        Get.to(() => const ReplyCommentScreen());
+                      },
+                      borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                      child: NotificationItem(
+                        notificationString: controller.selectedComment.value.comment ?? '',
+                        action: () {
+                        },
+                      ),
                     );
                   },
                 );

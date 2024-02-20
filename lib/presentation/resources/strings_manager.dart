@@ -59,6 +59,15 @@ class AppStrings {
   static const String noteDownloadError = 'حدث خطأ';
   static const String noteDownloaded = 'تم تحميل المذكرة';
 
+  // Comments Screen
+  static const String addComment = 'إضافة تعليق';
+  static const String yourComment = 'تعليقك';
+  static const String commentAdded = 'تم إضافة التعليق';
+
+  // Subscriptions Screen
+  static const String total = 'إجمالى الأرباح';
+  static const String noSub = 'عدد المشتركين';
+
   // Error
   static const String error = 'حدث خطأ';
 }

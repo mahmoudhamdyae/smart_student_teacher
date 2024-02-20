@@ -26,8 +26,7 @@ class SubscriptionsController extends GetxController {
         _status.value = RxStatus.success();
       // });
       notifications.value = List.generate(20, (index) => NotificationModel(
-          'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص',
-          '3 ساعة')
+          text: 'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص',)
       );
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
