@@ -38,17 +38,12 @@ class CommentsScreen extends StatelessWidget {
                   physics: const ClampingScrollPhysics(),
                   itemCount: controller.comments.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return InkWell(
-                      onTap: () {
+                    return NotificationItem(
+                      notificationString: controller.comments[index].comment ?? '',
+                      action: () {
                         Get.find<CommentsController>().selectedComment.value = controller.comments[index];
                         Get.to(() => const ReplyCommentScreen());
                       },
-                      borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-                      child: NotificationItem(
-                        notificationString: controller.selectedComment.value.comment ?? '',
-                        action: () {
-                        },
-                      ),
                     );
                   },
                 );

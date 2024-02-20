@@ -15,62 +15,84 @@ class ReplyCommentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const TopBar(title: AppStrings.bottomBarComments,),
-        GetX<CommentsController>(
-          init: Get.find<CommentsController>(),
-          builder: (CommentsController controller) {
-            return Text(controller.selectedComment.value.comment ?? '');
-            },
-        ),
-        Expanded(child: Container()),
-        ListView(
-          shrinkWrap: true,
-          physics: const ClampingScrollPhysics(),
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextFormField(
-              controller: Get.find<CommentsController>().commentEditText,
-              onChanged: (newComment) => Get.find<CommentsController>().updateComment(newComment),
-              textInputAction: TextInputAction.done,
-              keyboardType: TextInputType.text,
-              style: getLargeStyle(
-                fontSize: FontSize.s14,
-                color: ColorManager.grey,
-              ),
-              decoration: getTextFieldDecoration(
-                hint: AppStrings.yourComment,
-                onPressed: () { },
-                prefixIcon: Icons.comment,
-              ),
-            ),
-            const SizedBox(height: 8.0,),
-            SizedBox(
-              width: double.infinity,
-              child: FilledButton(
-                style: getFilledButtonStyle(),
-                onPressed: () {
-                  CommentsController controller = Get.find<CommentsController>();
-                  controller.addComment().then((value) {
-                    Get.showSnackbar(
-                      const GetSnackBar(
-                        title: null,
-                        message: AppStrings.commentAdded,
-                        duration: Duration(seconds: AppConstants.snackBarTime),
+            const TopBar(title: AppStrings.bottomBarComments,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+              child: GetX<CommentsController>(
+                init: Get.find<CommentsController>(),
+                builder: (CommentsController controller) {
+                  return Column(
+                    children: [
+                      Text(
+                        controller.selectedComment.value.user?.name ?? '',
+                        style: getLargeStyle(),
                       ),
-                    );
-                  });},
-                child: Text(
-                  AppStrings.addComment,
-                  style: getSmallStyle(
-                    color: ColorManager.white,
-                  ),
-                ),
+                      Text(
+                        controller.selectedComment.value.comment ?? '',
+                        style: getSmallStyle(),
+                      ),
+                    ],
+                  );
+                  },
               ),
             ),
+            Expanded(child: Container()),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              child: ListView(
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                children: [
+                  TextFormField(
+                    controller: Get.find<CommentsController>().commentEditText,
+                    onChanged: (newComment) => Get.find<CommentsController>().updateComment(newComment),
+                    textInputAction: TextInputAction.done,
+                    keyboardType: TextInputType.text,
+                    style: getLargeStyle(
+                      fontSize: FontSize.s14,
+                      color: ColorManager.grey,
+                    ),
+                    decoration: getTextFieldDecoration(
+                      hint: AppStrings.yourComment,
+                      onPressed: () { },
+                      prefixIcon: Icons.comment,
+                    ),
+                  ),
+                  const SizedBox(height: 8.0,),
+                  SizedBox(
+                    width: double.infinity,
+                    child: FilledButton(
+                      style: getFilledButtonStyle(),
+                      onPressed: () {
+                        CommentsController controller = Get.find<CommentsController>();
+                        controller.addComment().then((value) {
+                          Get.showSnackbar(
+                            const GetSnackBar(
+                              title: null,
+                              message: AppStrings.commentAdded,
+                              duration: Duration(seconds: AppConstants.snackBarTime),
+                            ),
+                          );
+                        });},
+                      child: Text(
+                        AppStrings.addComment,
+                        style: getSmallStyle(
+                          color: ColorManager.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
-        )
-      ],
+        ),
+      ),
     );
   }
 }
