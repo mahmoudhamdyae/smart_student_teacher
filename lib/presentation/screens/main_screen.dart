@@ -3,6 +3,7 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:teacher/presentation/screens/comments/widgets/comments_screen.dart';
 import 'package:teacher/presentation/screens/courses/screens/courses_screen.dart';
 import 'package:teacher/presentation/screens/subscriptions/widgets/subscriptions_screen.dart';
+import '../../core/check_version.dart';
 import '../resources/color_manager.dart';
 import '../resources/constants_manager.dart';
 import '../resources/strings_manager.dart';
@@ -19,6 +20,16 @@ class _MainScreenState extends State<MainScreen> {
 
   final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    try {
+      versionCheck(context);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 
   List<Widget> _buildScreens() {
     return [

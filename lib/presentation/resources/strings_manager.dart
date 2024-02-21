@@ -70,4 +70,10 @@ class AppStrings {
 
   // Error
   static const String error = 'حدث خطأ';
+
+  // Update Dialog
+  static const updateDialogTitle = 'تحديث جديد متاح';
+  static const updateDialogMessage = 'يتوفر إصدار أحدث من التطبيق، يرجى تحديثه الآن.';
+  static const updateDialogButtonLabel = 'تحديث الآن';
+  static const updateDialogButtonLabelCancel = 'لاحقًا';
 }
