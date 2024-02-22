@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:teacher/presentation/screens/comments/widgets/comments_screen.dart';
 import 'package:teacher/presentation/screens/courses/screens/courses_screen.dart';
 import '../../core/check_version.dart';
 import '../resources/color_manager.dart';
@@ -10,7 +9,9 @@ import '../resources/styles_manager.dart';
 import 'notifications/widgets/notifications_screen.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+
+  final int selectedIndex;
+  const MainScreen({super.key, required this.selectedIndex});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -18,12 +19,14 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
 
-  final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
-  int _selectedIndex = 0;
+  late PersistentTabController _controller;
+  late int _selectedIndex;
 
   @override
   void initState() {
     super.initState();
+    _selectedIndex = widget.selectedIndex;
+    _controller = PersistentTabController(initialIndex: _selectedIndex);
     try {
       versionCheck(context);
     } catch (e) {

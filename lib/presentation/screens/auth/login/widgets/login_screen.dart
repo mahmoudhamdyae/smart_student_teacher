@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Get.back();
           showError(context, controller.status.errorMessage.toString(), () {});
         } else {
-          Get.offAll(() => const MainScreen());
+          Get.offAll(() => const MainScreen(selectedIndex: 0,));
         }
       });
     }

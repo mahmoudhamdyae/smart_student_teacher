@@ -93,7 +93,7 @@ class MyApp extends StatelessWidget {
       theme: getApplicationTheme(),
       debugShowCheckedModeBanner: false,
       locale: const Locale('ar'),
-      home: _controller.isUserLoggedIn() ? const MainScreen()
+      home: _controller.isUserLoggedIn() ? const MainScreen(selectedIndex: 0,)
           :
       const LoginScreen(),
       initialBinding: GetXDi(),
