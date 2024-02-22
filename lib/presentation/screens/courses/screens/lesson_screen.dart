@@ -71,7 +71,7 @@ class _LessonScreenState extends State<LessonScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          controller.course.value.name ?? '',
+                          controller.course.value.subjectName ?? '',
                           style: getLargeStyle(),
                         ),
                         Text(

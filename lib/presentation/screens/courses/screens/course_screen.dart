@@ -113,7 +113,7 @@ class CourseScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                course.name ?? '',
+                course.subjectName ?? '',
                 style: getLargeStyle(),
               ),
               // 5 وحدات - 32 درس
@@ -132,8 +132,8 @@ class CourseScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                PriceWidget(price: course.month ?? 0, month: AppStrings.monthly,),
-                PriceWidget(price: course.term ?? 0, month: AppStrings.termly,),
+                PriceWidget(price: course.monthlySubscriptionPrice ?? 0, month: AppStrings.monthly,),
+                PriceWidget(price: course.termPrice ?? 0, month: AppStrings.termly,),
               ],
             ),
             const Positioned(

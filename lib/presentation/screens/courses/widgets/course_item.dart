@@ -47,7 +47,7 @@ class CourseItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    course.name ?? '',
+                    course.subjectName ?? '',
                     style: getLargeStyle(
                         fontWeight: FontWeight.w400
                     ),
@@ -66,7 +66,7 @@ class CourseItem extends StatelessWidget {
               top: 12.0,
               left: 8.0,
               child: Text(
-                course.marhala ?? '',
+                course.classroom ?? '',
                 style: getSmallStyle(
                   color: const Color(0xff808080),
                 ),

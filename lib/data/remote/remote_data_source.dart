@@ -17,7 +17,7 @@ abstract class RemoteDataSource {
   void sendTokenAndUserId(int userId);
 
   // Remote Data Source
-  Future<List<Course>> getCourses(int userId);
+  Future<CoursesResponse> getCourses(int userId);
   Future<List<Wehda>> getTutorials(int courseId);
   Future<List<Comment>> getComments(int userId);
   Future<void> addComment(String comment, int userId, int videoId);
@@ -71,20 +71,14 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   }
 
   @override
-  Future<List<Course>> getCourses(int userId) async {
+  Future<CoursesResponse> getCourses(int userId) async {
     await _checkNetwork();
 
     String url = "${Constants.baseUrl}teacher/courses/$userId";
     final response = await _dio.get(url);
 
-    List<Course> courses = [];
-    for (var singleCourse in response.data['courses']) {
-      Course course = Course.fromJson(singleCourse);
-      courses.add(course);
-    }
-
-
-    return courses;
+    CoursesResponse coursesResponse = CoursesResponse.fromJson(response.data);
+    return coursesResponse;
   }
 
   @override

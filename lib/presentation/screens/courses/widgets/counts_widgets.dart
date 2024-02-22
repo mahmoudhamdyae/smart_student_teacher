@@ -23,11 +23,16 @@ class CountsWidgets extends StatelessWidget {
                     style: getLargeStyle(),
                     textAlign: TextAlign.center,
                   ),
-                  Text(
-                    '0 د.ك',
-                    style: getSmallStyle(),
-                    textAlign: TextAlign.center,
-                  ),
+                  GetX<CoursesController>(
+                    init: Get.find<CoursesController>(),
+                    builder: (CoursesController controller) {
+                      return Text(
+                        '${controller.totalEarn} د.ك',
+                        style: getSmallStyle(),
+                        textAlign: TextAlign.center,
+                      );
+                    },
+                  )
                 ],
               ),
             ),

@@ -14,7 +14,7 @@ abstract class Repository {
   Future<void> signOut();
 
   // Remote Data Source
-  Future<List<Course>> getCourses();
+  Future<CoursesResponse> getCourses();
   Future<List<Wehda>> getTutorials(int courseId);
   Future<List<Comment>> getComments();
   Future<void> addComment(String comment, int videoId);

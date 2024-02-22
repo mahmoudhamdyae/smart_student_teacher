@@ -52,7 +52,7 @@ class RepositoryImpl extends Repository {
   // Remote Data Source
 
   @override
-  Future<List<Course>> getCourses() {
+  Future<CoursesResponse> getCourses() {
     return _remoteDataSource.getCourses(_localDataSource.getUserId());
   }
 

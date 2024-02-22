@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
+import 'package:teacher/core/constants.dart';
 import 'package:teacher/domain/models/wehda.dart';
+import 'package:teacher/presentation/resources/assets_manager.dart';
 
 import '../../../../domain/models/course.dart';
 import '../../../../domain/models/lesson.dart';
@@ -11,6 +13,8 @@ class CoursesController extends GetxController {
   final RxList<Wehda> tutorials = RxList.empty();
   final Rx<Course> course = Course().obs;
   final RxInt usersCount = 0.obs;
+  final RxDouble totalEarn = 0.0.obs;
+  final RxString teacherImage = ImageAssets.user.obs;
   final RxList<Comments> comments = RxList.empty();
   final Rx<Lesson> _selectedLesson = Lesson().obs;
   set selectedLesson(Rx<Lesson> value) {
@@ -38,9 +42,11 @@ class CoursesController extends GetxController {
   Future<void> getCourses() async {
     _status.value = RxStatus.loading();
     try {
-      await _repository.getCourses().then((remoteCourses) {
+      await _repository.getCourses().then((remoteCoursesResponse) {
         _status.value = RxStatus.success();
-        courses.value = remoteCourses;
+        courses.value = remoteCoursesResponse.courses ?? [];
+        teacherImage.value = remoteCoursesResponse.teacher?.image == null ? ImageAssets.user : '${Constants.siteUrl}${remoteCoursesResponse.teacher?.image}';
+        totalEarn.value = remoteCoursesResponse.totalEarn ?? 0;
         _getUsersCount();
       });
     } on Exception catch (e) {
