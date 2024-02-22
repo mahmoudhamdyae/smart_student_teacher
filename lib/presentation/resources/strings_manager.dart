@@ -43,7 +43,9 @@ class AppStrings {
   static const String bottomBarSubscriptions = 'الاشتراكات';
   static const String bottomBarComments = 'التعليقات';
   static const String bottomBarNotifications = 'الإشعارات';
+  static const String bottomBarBooks = 'المذكرات';
   static const String noCourses = 'لا يوجد كورسات';
+  static const String noBooks = 'لا يوجد مذكرات';
   static const String noSubscriptions = 'لا يوجد اشتراكات';
   static const String noCommentsScreen = 'لا يوجد تعليقات';
   static const String noNotifications = 'لا يوجد إشعارات';

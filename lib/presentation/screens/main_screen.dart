@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:teacher/presentation/screens/books/widgets/books_screen.dart';
 import 'package:teacher/presentation/screens/courses/screens/courses_screen.dart';
 import '../../core/check_version.dart';
 import '../resources/color_manager.dart';
@@ -42,12 +43,12 @@ class _MainScreenState extends State<MainScreen> {
       ),
       const Padding(
         padding: EdgeInsets.only(bottom: 18.0),
+        child: BooksScreen(),
+      ),
+      const Padding(
+        padding: EdgeInsets.only(bottom: 18.0),
         child: SubscriptionsScreen(),
       ),
-      // const Padding(
-      //   padding: EdgeInsets.only(bottom: 18.0),
-      //   child: CommentsScreen(),
-      // ),
     ];
   }
 
@@ -70,19 +71,19 @@ class _MainScreenState extends State<MainScreen> {
             _controller.index = 1;
           });
         },
-        icon: Text(AppStrings.bottomBarNotifications, style: getLargeStyle(color: _selectedIndex == 1 ? ColorManager.secondary : ColorManager.grey),),
+        icon: Text(AppStrings.bottomBarBooks, style: getLargeStyle(color: _selectedIndex == 1 ? ColorManager.secondary : ColorManager.grey),),
         activeColorPrimary: ColorManager.white,
       ),
-      // PersistentBottomNavBarItem(
-      //   onPressed: (BuildContext? context) {
-      //     setState(() {
-      //       _selectedIndex = 2;
-      //       _controller.index = 2;
-      //     });
-      //   },
-      //   icon: Text(AppStrings.bottomBarComments, style: getLargeStyle(color: _selectedIndex == 2 ? ColorManager.secondary : ColorManager.grey),),
-      //   activeColorPrimary: ColorManager.white,
-      // ),
+      PersistentBottomNavBarItem(
+        onPressed: (BuildContext? context) {
+          setState(() {
+            _selectedIndex = 2;
+            _controller.index = 2;
+          });
+        },
+        icon: Text(AppStrings.bottomBarNotifications, style: getLargeStyle(color: _selectedIndex == 2 ? ColorManager.secondary : ColorManager.grey),),
+        activeColorPrimary: ColorManager.white,
+      ),
     ];
   }
 

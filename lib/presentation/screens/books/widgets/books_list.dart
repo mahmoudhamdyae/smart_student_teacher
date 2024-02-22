@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:teacher/core/utils/insets.dart';
-import 'package:teacher/presentation/screens/courses/widgets/course_item.dart';
+import 'package:teacher/presentation/screens/books/widgets/book_item.dart';
+import 'package:teacher/presentation/screens/books/widgets/books_counts_widget.dart';
 
-import '../../../../domain/models/course.dart';
-import 'counts_widgets.dart';
+import '../../../../domain/models/book.dart';
 
-class CoursesList extends StatelessWidget {
+class BooksList extends StatelessWidget {
 
-  final List<Course> courses;
-  const CoursesList({super.key, required this.courses});
+  final List<Book> books;
+  const BooksList({super.key, required this.books});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class CoursesList extends StatelessWidget {
       physics: const AlwaysScrollableScrollPhysics(),
       children: [
         const SizedBox(height: 8.0,),
-        const CountsWidgets(),
+        const BooksCountsWidgets(),
         const SizedBox(height: 8.0,),
         isWide(context) ? _buildGridView(context) : _buildListView(),
       ],
@@ -28,9 +28,9 @@ class CoursesList extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
-      itemCount: courses.length,
+      itemCount: books.length,
       itemBuilder: (BuildContext context, int index) {
-        return CourseItem(course: courses[index]);
+        return BookItem(book: books[index]);
       },
     );
   }
@@ -41,8 +41,8 @@ class CoursesList extends StatelessWidget {
       physics: const AlwaysScrollableScrollPhysics(),
       crossAxisCount:(MediaQuery.of(context).size.width ~/ 350).toInt(),
       childAspectRatio: 3.5,
-      children: List.generate(courses.length, (index) {
-        return CourseItem(course: courses[index]);
+      children: List.generate(books.length, (index) {
+        return BookItem(book: books[index]);
       }),
     );
   }

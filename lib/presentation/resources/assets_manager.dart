@@ -8,6 +8,7 @@ class ImageAssets {
   static const String error = "$imagePath/error.svg";
   static const String course = "$imagePath/course.png";
   static const String download = "$imagePath/download.svg";
+  static const String books = "$imagePath/note.png";
 }
 
 class JsonAssets {
