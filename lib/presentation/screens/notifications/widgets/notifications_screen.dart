@@ -43,7 +43,9 @@ class SubscriptionsScreen extends StatelessWidget {
                       notificationDesc: controller.notifications[index].body ?? '',
                       action: () {
                         controller.selectedNotification.value = controller.notifications[index];
-                        Get.to(() => const ReplyCommentScreen());
+                        if (controller.selectedNotification.value.route?.type == 'comment') {
+                          Get.to(() => const ReplyCommentScreen());
+                        }
                       },
                     );
                   },

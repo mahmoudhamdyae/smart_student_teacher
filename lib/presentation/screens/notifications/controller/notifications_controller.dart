@@ -41,6 +41,7 @@ class NotificationsController extends GetxController {
       _addCommentStatus.value = RxStatus.loading();
       await _repository.addComment(commentEditText.text, selectedNotification.value.route?.id ?? -1).then((value) {
         _addCommentStatus.value = RxStatus.success();
+        commentEditText.text = '';
       });
     } on Exception catch (e) {
       _addCommentStatus.value = RxStatus.error(e.toString());

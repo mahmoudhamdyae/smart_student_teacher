@@ -27,6 +27,7 @@ class ReplyCommentScreen extends StatelessWidget {
                 init: Get.find<NotificationsController>(),
                 builder: (NotificationsController controller) {
                   return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         controller.selectedNotification.value.from ?? '',
@@ -71,6 +72,7 @@ class ReplyCommentScreen extends StatelessWidget {
                       onPressed: () {
                         NotificationsController controller = Get.find<NotificationsController>();
                         controller.addComment().then((value) {
+                          Get.back();
                           Get.showSnackbar(
                             const GetSnackBar(
                               title: null,
