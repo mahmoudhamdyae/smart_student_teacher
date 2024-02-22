@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:teacher/domain/models/notification.dart';
 
-import '../../../../domain/models/comment.dart';
 import '../../../../domain/repository/repository.dart';
 
 class NotificationsController extends GetxController {
@@ -12,8 +12,8 @@ class NotificationsController extends GetxController {
   RxStatus get addCommentStatus => _addCommentStatus.value;
 
   final TextEditingController commentEditText = TextEditingController();
-  final RxList<Comment> comments = RxList.empty();
-  final Rx<Comment> selectedComment = Comment().obs;
+  final RxList<NotificationModel> notifications = RxList.empty();
+  final Rx<NotificationModel> selectedNotification = NotificationModel().obs;
 
   final Repository _repository;
   NotificationsController(this._repository);
@@ -27,20 +27,9 @@ class NotificationsController extends GetxController {
   Future<void> getNotifications() async {
     _status.value = RxStatus.loading();
     try {
-      await _repository.getNotifications().then((remoteComments) {
+      await _repository.getNotifications().then((remoteNotifications) {
         _status.value = RxStatus.success();
-        for (var element in remoteComments) {
-          comments.add(
-            Comment(
-              user: CommentUser(name: element.from),
-              videoId: element.route?.id,
-              comment: element.body,
-              id: element.id,
-              createdAt: element.createdAt,
-              updatedAt: element.updatedAt,
-            )
-          );
-        }
+        notifications.value = remoteNotifications;
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
@@ -50,7 +39,7 @@ class NotificationsController extends GetxController {
   Future<void> addComment() async {
     try {
       _addCommentStatus.value = RxStatus.loading();
-      await _repository.addComment(commentEditText.text, selectedComment.value.video?.id ?? -1).then((value) {
+      await _repository.addComment(commentEditText.text, selectedNotification.value.route?.id ?? -1).then((value) {
         _addCommentStatus.value = RxStatus.success();
       });
     } on Exception catch (e) {

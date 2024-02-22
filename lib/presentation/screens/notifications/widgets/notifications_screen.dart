@@ -30,18 +30,19 @@ class SubscriptionsScreen extends StatelessWidget {
                   return const LoadingScreen();
                 } else if (controller.status.isError) {
                   return ErrorScreen(error: controller.status.errorMessage ?? '');
-                } else if (controller.comments.isEmpty){
+                } else if (controller.notifications.isEmpty){
                   return const EmptyScreen(emptyString: AppStrings.noNotifications);
                 }
                 return ListView.builder(
                   shrinkWrap: true,
                   physics: const ClampingScrollPhysics(),
-                  itemCount: controller.comments.length,
+                  itemCount: controller.notifications.length,
                   itemBuilder: (BuildContext context, int index) {
                     return NotificationItem(
-                      notificationString: controller.comments[index].comment ?? '',
+                      notificationTitle: controller.notifications[index].title ?? '',
+                      notificationDesc: controller.notifications[index].body ?? '',
                       action: () {
-                        controller.selectedComment.value = controller.comments[index];
+                        controller.selectedNotification.value = controller.notifications[index];
                         Get.to(() => const ReplyCommentScreen());
                       },
                     );

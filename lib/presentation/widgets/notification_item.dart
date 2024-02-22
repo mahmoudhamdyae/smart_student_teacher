@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:teacher/presentation/resources/color_manager.dart';
 
 import '../resources/font_manager.dart';
 import '../resources/styles_manager.dart';
 
 class NotificationItem extends StatelessWidget {
 
-  final String notificationString;
+  final String notificationTitle;
+  final String notificationDesc;
   final Function() action;
-  const NotificationItem({super.key, required this.notificationString, required this.action});
+  const NotificationItem({super.key, required this.notificationTitle, required this.action, required this.notificationDesc});
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +27,23 @@ class NotificationItem extends StatelessWidget {
               width: 1,
             ),
           ),
-          child: Text(
-            '${notificationString}',
-            style: getSmallStyle(
-                fontSize: FontSize.s12,
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                notificationTitle,
+                style: getLargeStyle(
+                    fontSize: FontSize.s12,
+                ),
+              ),
+              Text(
+                notificationDesc,
+                style: getSmallStyle(
+                  fontSize: FontSize.s12,
+                  color: ColorManager.grey,
+                ),
+              ),
+            ],
           ),
         ),
       ),

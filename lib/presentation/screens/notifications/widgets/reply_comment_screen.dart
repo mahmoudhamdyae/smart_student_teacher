@@ -29,11 +29,11 @@ class ReplyCommentScreen extends StatelessWidget {
                   return Column(
                     children: [
                       Text(
-                        controller.selectedComment.value.user?.name ?? '',
+                        controller.selectedNotification.value.from ?? '',
                         style: getLargeStyle(),
                       ),
                       Text(
-                        controller.selectedComment.value.comment ?? '',
+                        controller.selectedNotification.value.body ?? '',
                         style: getSmallStyle(),
                       ),
                     ],
