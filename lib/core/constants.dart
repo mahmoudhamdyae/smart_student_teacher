@@ -1,17 +1,6 @@
 class Constants {
-  // static const String siteUrl = "https://smartstudent.live/";
-  static const String siteUrl = "https://53c0-105-32-145-96.ngrok-free.app/"; // Islam
-  // static const String siteUrl = "https://50fc-105-32-145-96.ngrok-free.app/"; // Ahmed
-
+  static const String siteUrl = "https://smartstudent.live/";
   static const String baseUrl = "${siteUrl}api/";
-
-
-
-
-
-
-
-
 
   static const String vimeoToken = '573973217d0417618ea108a3f730aad6';
 
