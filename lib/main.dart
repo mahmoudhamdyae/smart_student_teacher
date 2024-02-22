@@ -80,7 +80,10 @@ void _onMessageOpened() {
 void _getOnMessageOpenedTerminated() async {
   RemoteMessage? initialMessage = await FirebaseMessaging.instance.getInitialMessage();
   debugPrint('Message Opened: ${initialMessage?.notification?.title}');
+  selectedIndex = 1;
 }
+
+int selectedIndex = 0;
 
 class MyApp extends StatelessWidget {
 
@@ -93,7 +96,7 @@ class MyApp extends StatelessWidget {
       theme: getApplicationTheme(),
       debugShowCheckedModeBanner: false,
       locale: const Locale('ar'),
-      home: _controller.isUserLoggedIn() ? const MainScreen(selectedIndex: 0,)
+      home: _controller.isUserLoggedIn() ? MainScreen(selectedIndex: selectedIndex,)
           :
       const LoginScreen(),
       initialBinding: GetXDi(),
