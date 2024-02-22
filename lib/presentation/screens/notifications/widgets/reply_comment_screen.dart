@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:teacher/presentation/resources/strings_manager.dart';
-import 'package:teacher/presentation/screens/comments/controller/comments_controller.dart';
+import 'package:teacher/presentation/screens/notifications/controller/notifications_controller.dart';
 import 'package:teacher/presentation/widgets/top_bar.dart';
 
 import '../../../resources/color_manager.dart';
@@ -23,9 +23,9 @@ class ReplyCommentScreen extends StatelessWidget {
             const TopBar(title: AppStrings.bottomBarComments,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
-              child: GetX<CommentsController>(
-                init: Get.find<CommentsController>(),
-                builder: (CommentsController controller) {
+              child: GetX<NotificationsController>(
+                init: Get.find<NotificationsController>(),
+                builder: (NotificationsController controller) {
                   return Column(
                     children: [
                       Text(
@@ -49,8 +49,8 @@ class ReplyCommentScreen extends StatelessWidget {
                 physics: const ClampingScrollPhysics(),
                 children: [
                   TextFormField(
-                    controller: Get.find<CommentsController>().commentEditText,
-                    onChanged: (newComment) => Get.find<CommentsController>().updateComment(newComment),
+                    controller: Get.find<NotificationsController>().commentEditText,
+                    onChanged: (newComment) => Get.find<NotificationsController>().updateComment(newComment),
                     textInputAction: TextInputAction.done,
                     keyboardType: TextInputType.text,
                     style: getLargeStyle(
@@ -69,7 +69,7 @@ class ReplyCommentScreen extends StatelessWidget {
                     child: FilledButton(
                       style: getFilledButtonStyle(),
                       onPressed: () {
-                        CommentsController controller = Get.find<CommentsController>();
+                        NotificationsController controller = Get.find<NotificationsController>();
                         controller.addComment().then((value) {
                           Get.showSnackbar(
                             const GetSnackBar(

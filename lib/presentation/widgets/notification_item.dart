@@ -28,7 +28,7 @@ class NotificationItem extends StatelessWidget {
           child: Text(
             '${notificationString}',
             style: getSmallStyle(
-                fontSize: FontSize.s12
+                fontSize: FontSize.s12,
             ),
           ),
         ),

@@ -80,7 +80,9 @@ void _onMessageOpened() {
 void _getOnMessageOpenedTerminated() async {
   RemoteMessage? initialMessage = await FirebaseMessaging.instance.getInitialMessage();
   debugPrint('Message Opened: ${initialMessage?.notification?.title}');
-  selectedIndex = 1;
+  if (initialMessage != null) {
+    selectedIndex = 1;
+  }
 }
 
 int selectedIndex = 0;

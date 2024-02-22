@@ -12,7 +12,6 @@ import '../data/repository/repository_impl.dart';
 import '../domain/repository/repository.dart';
 import '../presentation/screens/auth/auth_controller.dart';
 import '../presentation/screens/auth/login/controller/login_controller.dart';
-import '../presentation/screens/comments/controller/comments_controller.dart';
 import '../presentation/screens/courses/controller/courses_controller.dart';
 
 class GetXDi implements Bindings {
@@ -47,6 +46,5 @@ class GetXDi implements Bindings {
     Get.lazyPut<AuthController>(() => AuthController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<CoursesController>(() => CoursesController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<NotificationsController>(() => NotificationsController(Get.find<Repository>()), fenix: true);
-    Get.lazyPut<CommentsController>(() => CommentsController(Get.find<Repository>()), fenix: true);
   }
 }
