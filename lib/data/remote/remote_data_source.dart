@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:teacher/domain/models/comment.dart';
 import 'package:teacher/domain/models/course.dart';
 
 import '../../core/constants.dart';
+import '../../domain/models/notification.dart';
 import '../../domain/models/wehda.dart';
 import '../../presentation/resources/strings_manager.dart';
 import '../network_info.dart';
@@ -19,7 +19,7 @@ abstract class RemoteDataSource {
   // Remote Data Source
   Future<CoursesResponse> getCourses(int userId);
   Future<List<Wehda>> getTutorials(int courseId);
-  Future<List<Comment>> getComments(int userId);
+  Future<List<NotificationModel>> getNotifications(int userId);
   Future<void> addComment(String comment, int userId, int videoId);
 }
 
@@ -98,14 +98,17 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   }
 
   @override
-  Future<List<Comment>> getComments(int userId) async {
+  Future<List<NotificationModel>> getNotifications(int userId) async {
     await _checkNetwork();
 
-    String url = "${Constants.baseUrl}video/getComment/$userId";
+    String url = "${Constants.baseUrl}teacher/notify/$userId";
     final response = await _dio.get(url);
 
-    CommentResponse commentResponse = CommentResponse.fromJson(response.data);
-    return commentResponse.comments ?? [];
+    List<NotificationModel> notifications = [];
+    for (var singleNotification in response.data) {
+      notifications.add(NotificationModel.fromJson(singleNotification));
+    }
+    return notifications;
   }
 
   @override

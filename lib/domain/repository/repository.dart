@@ -1,5 +1,5 @@
-import 'package:teacher/domain/models/comment.dart';
 import 'package:teacher/domain/models/course.dart';
+import 'package:teacher/domain/models/notification.dart';
 
 import '../models/wehda.dart';
 
@@ -16,6 +16,6 @@ abstract class Repository {
   // Remote Data Source
   Future<CoursesResponse> getCourses();
   Future<List<Wehda>> getTutorials(int courseId);
-  Future<List<Comment>> getComments();
+  Future<List<NotificationModel>> getNotifications();
   Future<void> addComment(String comment, int videoId);
 }

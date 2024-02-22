@@ -1,5 +1,5 @@
-import 'package:teacher/domain/models/comment.dart';
 import 'package:teacher/domain/models/course.dart';
+import 'package:teacher/domain/models/notification.dart';
 
 import 'package:teacher/domain/models/wehda.dart';
 
@@ -62,8 +62,8 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  Future<List<Comment>> getComments() {
-    return _remoteDataSource.getComments(_localDataSource.getUserId());
+  Future<List<NotificationModel>> getNotifications() {
+    return _remoteDataSource.getNotifications(_localDataSource.getUserId());
   }
 
   @override

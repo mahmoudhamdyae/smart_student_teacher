@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../../../domain/models/comment.dart';
-import '../../../../domain/models/notification.dart';
 import '../../../../domain/repository/repository.dart';
 
 class NotificationsController extends GetxController {
@@ -16,38 +15,32 @@ class NotificationsController extends GetxController {
   final RxList<Comment> comments = RxList.empty();
   final Rx<Comment> selectedComment = Comment().obs;
 
-  final RxList<NotificationModel> notifications = RxList.empty();
-
   final Repository _repository;
   NotificationsController(this._repository);
 
   @override
   void onInit() {
     super.onInit();
-    getSubscriptions();
-    getComments();
+    getNotifications();
   }
 
-  Future<void> getSubscriptions() async {
+  Future<void> getNotifications() async {
     _status.value = RxStatus.loading();
     try {
-      // await _repository.getSubscriptions().then((remoteOrders) {
+      await _repository.getNotifications().then((remoteComments) {
         _status.value = RxStatus.success();
-      // });
-      notifications.value = List.generate(20, (index) => NotificationModel(
-          text: 'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص',)
-      );
-    } on Exception catch (e) {
-      _status.value = RxStatus.error(e.toString());
-    }
-  }
-
-  Future<void> getComments() async {
-    _status.value = RxStatus.loading();
-    try {
-      await _repository.getComments().then((remoteComments) {
-        _status.value = RxStatus.success();
-        comments.value = remoteComments;
+        for (var element in remoteComments) {
+          comments.add(
+            Comment(
+              user: CommentUser(name: element.from),
+              videoId: element.route?.id,
+              comment: element.body,
+              id: element.id,
+              createdAt: element.createdAt,
+              updatedAt: element.updatedAt,
+            )
+          );
+        }
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());

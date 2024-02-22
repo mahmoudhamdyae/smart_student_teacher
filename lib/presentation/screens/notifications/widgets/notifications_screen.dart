@@ -17,7 +17,7 @@ class SubscriptionsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: RefreshIndicator(
-        onRefresh: () async => await Get.find<NotificationsController>().getSubscriptions(),
+        onRefresh: () async => await Get.find<NotificationsController>().getNotifications(),
         child: ListView(
           shrinkWrap: true,
           physics: const AlwaysScrollableScrollPhysics(),
