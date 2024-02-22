@@ -5,7 +5,7 @@ class Course {
   int? term;
   String? marhala;
   String? type;
-  String? rate;
+  int? userCount;
 
   Course({
     this.id,
@@ -14,7 +14,7 @@ class Course {
     this.term,
     this.marhala,
     this.type,
-    this.rate,
+    this.userCount
   });
 
   factory Course.fromJson(Map<String, dynamic> json) {
@@ -25,7 +25,7 @@ class Course {
       term: json['term_price'] as int? ?? 0,
       marhala: json['classroom'] as String? ?? '',
       type: json['type'] as String? ?? '',
-      rate: '4.3',
+      userCount: json['user_count'] as int? ?? 0,
     );
   }
 }

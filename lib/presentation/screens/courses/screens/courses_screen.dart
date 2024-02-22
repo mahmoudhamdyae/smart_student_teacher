@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:teacher/presentation/screens/courses/widgets/counts_widgets.dart';
 import 'package:teacher/presentation/screens/courses/widgets/courses_list.dart';
 
 import '../../../../domain/models/course.dart';
@@ -23,6 +24,9 @@ class CoursesScreen extends StatelessWidget {
           physics: const AlwaysScrollableScrollPhysics(),
           children: [
             HomeAppBar(),
+            const SizedBox(height: 8.0,),
+            const CountsWidgets(),
+            const SizedBox(height: 8.0,),
             GetX<CoursesController>(
               init: Get.find<CoursesController>(),
               builder: (CoursesController controller) {

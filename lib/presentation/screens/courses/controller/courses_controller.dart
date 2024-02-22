@@ -10,6 +10,7 @@ class CoursesController extends GetxController {
   final RxList<Course> courses = RxList.empty();
   final RxList<Wehda> tutorials = RxList.empty();
   final Rx<Course> course = Course().obs;
+  final RxInt usersCount = 0.obs;
   final RxList<Comments> comments = RxList.empty();
   final Rx<Lesson> _selectedLesson = Lesson().obs;
   set selectedLesson(Rx<Lesson> value) {
@@ -40,6 +41,7 @@ class CoursesController extends GetxController {
       await _repository.getCourses().then((remoteCourses) {
         _status.value = RxStatus.success();
         courses.value = remoteCourses;
+        _getUsersCount();
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
@@ -57,6 +59,12 @@ class CoursesController extends GetxController {
       });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
+    }
+  }
+
+  void _getUsersCount() {
+    for (var singleCourse in courses) {
+      usersCount.value += singleCourse.userCount ?? 0;
     }
   }
 }

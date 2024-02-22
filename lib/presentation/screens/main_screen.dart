@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:teacher/presentation/screens/comments/widgets/comments_screen.dart';
 import 'package:teacher/presentation/screens/courses/screens/courses_screen.dart';
-import 'package:teacher/presentation/screens/subscriptions/widgets/subscriptions_screen.dart';
 import '../../core/check_version.dart';
 import '../resources/color_manager.dart';
 import '../resources/constants_manager.dart';
 import '../resources/strings_manager.dart';
 import '../resources/styles_manager.dart';
+import 'notifications/widgets/notifications_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -41,10 +41,10 @@ class _MainScreenState extends State<MainScreen> {
         padding: EdgeInsets.only(bottom: 18.0),
         child: SubscriptionsScreen(),
       ),
-      const Padding(
-        padding: EdgeInsets.only(bottom: 18.0),
-        child: CommentsScreen(),
-      ),
+      // const Padding(
+      //   padding: EdgeInsets.only(bottom: 18.0),
+      //   child: CommentsScreen(),
+      // ),
     ];
   }
 
@@ -67,19 +67,19 @@ class _MainScreenState extends State<MainScreen> {
             _controller.index = 1;
           });
         },
-        icon: Text(AppStrings.bottomBarSubscriptions, style: getLargeStyle(color: _selectedIndex == 1 ? ColorManager.secondary : ColorManager.grey),),
+        icon: Text(AppStrings.bottomBarNotifications, style: getLargeStyle(color: _selectedIndex == 1 ? ColorManager.secondary : ColorManager.grey),),
         activeColorPrimary: ColorManager.white,
       ),
-      PersistentBottomNavBarItem(
-        onPressed: (BuildContext? context) {
-          setState(() {
-            _selectedIndex = 2;
-            _controller.index = 2;
-          });
-        },
-        icon: Text(AppStrings.bottomBarComments, style: getLargeStyle(color: _selectedIndex == 2 ? ColorManager.secondary : ColorManager.grey),),
-        activeColorPrimary: ColorManager.white,
-      ),
+      // PersistentBottomNavBarItem(
+      //   onPressed: (BuildContext? context) {
+      //     setState(() {
+      //       _selectedIndex = 2;
+      //       _controller.index = 2;
+      //     });
+      //   },
+      //   icon: Text(AppStrings.bottomBarComments, style: getLargeStyle(color: _selectedIndex == 2 ? ColorManager.secondary : ColorManager.grey),),
+      //   activeColorPrimary: ColorManager.white,
+      // ),
     ];
   }
 
