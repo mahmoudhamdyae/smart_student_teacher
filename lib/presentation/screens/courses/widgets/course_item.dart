@@ -19,7 +19,7 @@ class CourseItem extends StatelessWidget {
         Get.to(() => CourseScreen(course: course,));
       },
       child: Container(
-        height: 120,
+        height: 90,
         margin: const EdgeInsets.all(8.0),
         padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
@@ -32,7 +32,7 @@ class CourseItem extends StatelessWidget {
         child: Stack(
           children: [
             Positioned(
-              top: -12,
+              top: -32,
               right: -2,
               child: Image.asset(
                 ImageAssets.course,
@@ -42,7 +42,7 @@ class CourseItem extends StatelessWidget {
             ),
             Positioned(
               right: 125.0,
-              top: 16.0,
+              top: 12.0,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -52,7 +52,7 @@ class CourseItem extends StatelessWidget {
                         fontWeight: FontWeight.w400
                     ),
                   ),
-                  const SizedBox(height: 16.0,),
+                  const SizedBox(height: 8.0,),
                   Text(
                     'عدد المشتركين: ${course.userCount}',
                     style: getSmallStyle(
@@ -63,7 +63,7 @@ class CourseItem extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 16.0,
+              top: 12.0,
               left: 8.0,
               child: Text(
                 course.marhala ?? '',

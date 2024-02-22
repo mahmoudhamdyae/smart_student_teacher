@@ -30,7 +30,7 @@ class CoursesList extends StatelessWidget {
       shrinkWrap: true,
       physics: const AlwaysScrollableScrollPhysics(),
       crossAxisCount:(MediaQuery.of(context).size.width ~/ 350).toInt(),
-      childAspectRatio: 2.2,
+      childAspectRatio: 3.5,
       children: List.generate(courses.length, (index) {
         return CourseItem(course: courses[index]);
       }),
