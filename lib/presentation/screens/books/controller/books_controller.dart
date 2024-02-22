@@ -24,12 +24,12 @@ class BooksController extends GetxController {
   Future<void> getBooks() async {
     _status.value = RxStatus.loading();
     try {
-      // await _repository.getBooks().then((remoteBooksResponse) {
-      //   _status.value = RxStatus.success();
-      //   books.value = remoteBooksResponse.books ?? [];
-      //   totalEarn.value = remoteBooksResponse.totalEarn ?? 0;
-      //   _getUsersCount();
-      // });
+      await _repository.getBooks().then((remoteBooksResponse) {
+        _status.value = RxStatus.success();
+        books.value = remoteBooksResponse.books ?? [];
+        // totalEarn.value = remoteBooksResponse.totalEarn ?? 0;
+        _getUsersCount();
+      });
     } on Exception catch (e) {
       _status.value = RxStatus.error(e.toString());
     }
@@ -37,7 +37,7 @@ class BooksController extends GetxController {
 
   void _getUsersCount() {
     for (var singleBook in books) {
-      usersCount.value += singleBook.userCount ?? 0;
+      // usersCount.value += singleBook.userCount ?? 0;
     }
   }
 }

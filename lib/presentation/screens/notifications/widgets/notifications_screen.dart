@@ -16,14 +16,14 @@ class SubscriptionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: RefreshIndicator(
-        onRefresh: () async => await Get.find<NotificationsController>().getNotifications(),
-        child: ListView(
-          shrinkWrap: true,
-          physics: const AlwaysScrollableScrollPhysics(),
-          children: [
-            HomeAppBar(),
-            GetX<NotificationsController>(
+      body: ListView(
+        shrinkWrap: true,
+        physics: const ClampingScrollPhysics(),
+        children: [
+          HomeAppBar(),
+          RefreshIndicator(
+            onRefresh: () async => await Get.find<NotificationsController>().getNotifications(),
+            child: GetX<NotificationsController>(
               init: Get.find<NotificationsController>(),
               builder: (NotificationsController controller) {
                 if (controller.status.isLoading) {
@@ -35,7 +35,7 @@ class SubscriptionsScreen extends StatelessWidget {
                 }
                 return ListView.builder(
                   shrinkWrap: true,
-                  physics: const ClampingScrollPhysics(),
+                  physics: const AlwaysScrollableScrollPhysics(),
                   itemCount: controller.notifications.length,
                   itemBuilder: (BuildContext context, int index) {
                     return NotificationItem(
@@ -52,8 +52,8 @@ class SubscriptionsScreen extends StatelessWidget {
                 );
               },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

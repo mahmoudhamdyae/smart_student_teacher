@@ -1,7 +1,7 @@
 class Constants {
   // static const String siteUrl = "https://smartstudent.live/";
-  // static const String siteUrl = "https://ffeb-105-38-30-42.ngrok-free.app/"; // Islam
-  static const String siteUrl = "https://50fc-105-32-145-96.ngrok-free.app/"; // Ahmed
+  static const String siteUrl = "https://53c0-105-32-145-96.ngrok-free.app/"; // Islam
+  // static const String siteUrl = "https://50fc-105-32-145-96.ngrok-free.app/"; // Ahmed
 
   static const String baseUrl = "${siteUrl}api/";
 

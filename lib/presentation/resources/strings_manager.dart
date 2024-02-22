@@ -71,6 +71,7 @@ class AppStrings {
   // Subscriptions Screen
   static const String total = 'إجمالى الأرباح';
   static const String noSub = 'عدد المشتركين';
+  static const String noSubBooks = 'عدد المشتريات';
 
   // Error
   static const String error = 'حدث خطأ';

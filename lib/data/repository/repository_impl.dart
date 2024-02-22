@@ -3,6 +3,7 @@ import 'package:teacher/domain/models/notification.dart';
 
 import 'package:teacher/domain/models/wehda.dart';
 
+import '../../domain/models/book.dart';
 import '../../domain/repository/repository.dart';
 import '../local/local_data_source.dart';
 import '../remote/remote_data_source.dart';
@@ -54,6 +55,11 @@ class RepositoryImpl extends Repository {
   @override
   Future<CoursesResponse> getCourses() {
     return _remoteDataSource.getCourses(_localDataSource.getUserId());
+  }
+
+  @override
+  Future<BooksResponse> getBooks() {
+    return _remoteDataSource.getBooks(_localDataSource.getUserId());
   }
 
   @override

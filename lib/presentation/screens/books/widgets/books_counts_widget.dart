@@ -40,7 +40,7 @@ class BooksCountsWidgets extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    AppStrings.noSub,
+                    AppStrings.noSubBooks,
                     style: getLargeStyle(),
                     textAlign: TextAlign.center,
                   ),

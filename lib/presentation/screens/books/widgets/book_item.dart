@@ -29,7 +29,7 @@ class BookItem extends StatelessWidget {
             top: -32,
             right: -2,
             child: Image.asset(
-              ImageAssets.course,
+              ImageAssets.books,
               height: 140,
               width: 110,
             ),
@@ -41,14 +41,14 @@ class BookItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  book.subjectName ?? '',
+                  book.name ?? '',
                   style: getLargeStyle(
                       fontWeight: FontWeight.w400
                   ),
                 ),
                 const SizedBox(height: 8.0,),
                 Text(
-                  'عدد المشتركين: ${book.userCount}',
+                  'أرباحك: 0 د.ك',
                   style: getSmallStyle(
                     color: ColorManager.grey,
                   ),

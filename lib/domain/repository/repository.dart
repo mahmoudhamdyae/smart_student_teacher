@@ -1,3 +1,4 @@
+import 'package:teacher/domain/models/book.dart';
 import 'package:teacher/domain/models/course.dart';
 import 'package:teacher/domain/models/notification.dart';
 
@@ -15,6 +16,7 @@ abstract class Repository {
 
   // Remote Data Source
   Future<CoursesResponse> getCourses();
+  Future<BooksResponse> getBooks();
   Future<List<Wehda>> getTutorials(int courseId);
   Future<List<NotificationModel>> getNotifications();
   Future<void> addComment(String comment, int videoId);

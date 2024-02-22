@@ -1,9 +1,8 @@
 class BooksResponse {
   List<Book>? books;
-  Teacher? teacher;
-  double? totalEarn;
+  List<BooksProfit>? booksProfit;
 
-  BooksResponse({this.books, this.teacher, this.totalEarn});
+  BooksResponse({this.books, this.booksProfit});
 
   BooksResponse.fromJson(Map<String, dynamic> json) {
     if (json['books'] != null) {
@@ -12,9 +11,12 @@ class BooksResponse {
         books!.add(Book.fromJson(v));
       });
     }
-    teacher =
-    json['teacher'] != null ? Teacher.fromJson(json['teacher']) : null;
-    totalEarn = json['totalEarn'];
+    if (json['books_profit'] != null) {
+      booksProfit = <BooksProfit>[];
+      json['books_profit'].forEach((v) {
+        booksProfit!.add(BooksProfit.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -22,102 +24,111 @@ class BooksResponse {
     if (books != null) {
       data['books'] = books!.map((v) => v.toJson()).toList();
     }
-    if (teacher != null) {
-      data['teacher'] = teacher!.toJson();
+    if (booksProfit != null) {
+      data['books_profit'] = booksProfit!.map((v) => v.toJson()).toList();
     }
-    data['totalEarn'] = totalEarn;
     return data;
   }
 }
 
 class Book {
   int? id;
-  String? subjectName;
+  String? name;
   int? techerId;
   String? stage;
   String? classroom;
-  String? expiryDate;
-  String? type;
-  dynamic teacherRatioBook;
-  int? termPrice;
-  int? monthlySubscriptionPrice;
+  int? quantity;
+  double? teacherRatio;
+  int? bookPrice;
   String? termType;
   int? active;
+  String? pdf;
   String? createdAt;
   String? updatedAt;
-  int? userCount;
 
   Book(
       {this.id,
-        this.subjectName,
+        this.name,
         this.techerId,
         this.stage,
         this.classroom,
-        this.expiryDate,
-        this.type,
-        this.teacherRatioBook,
-        this.termPrice,
-        this.monthlySubscriptionPrice,
+        this.quantity,
+        this.teacherRatio,
+        this.bookPrice,
         this.termType,
         this.active,
+        this.pdf,
         this.createdAt,
-        this.updatedAt,
-        this.userCount});
+        this.updatedAt});
 
   Book.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    subjectName = json['subject_name'];
+    name = json['name'];
     techerId = json['techer_id'];
     stage = json['stage'];
     classroom = json['classroom'];
-    expiryDate = json['expiry_date'];
-    type = json['type'];
-    teacherRatioBook = json['Teacher_ratio_book'];
-    termPrice = json['term_price'];
-    monthlySubscriptionPrice = json['monthly_subscription_price'];
+    quantity = json['quantity'];
+    teacherRatio = json['Teacher_ratio'];
+    bookPrice = json['book_price'];
     termType = json['term_type'];
     active = json['active'];
+    pdf = json['pdf'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    userCount = json['user_count'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
-    data['subject_name'] = subjectName;
+    data['name'] = name;
     data['techer_id'] = techerId;
     data['stage'] = stage;
     data['classroom'] = classroom;
-    data['expiry_date'] = expiryDate;
-    data['type'] = type;
-    data['Teacher_ratio_book'] = teacherRatioBook;
-    data['term_price'] = termPrice;
-    data['monthly_subscription_price'] = monthlySubscriptionPrice;
+    data['quantity'] = quantity;
+    data['Teacher_ratio'] = teacherRatio;
+    data['book_price'] = bookPrice;
     data['term_type'] = termType;
     data['active'] = active;
+    data['pdf'] = pdf;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
-    data['user_count'] = userCount;
     return data;
   }
 }
 
-class Teacher {
+class BooksProfit {
   int? id;
-  String? image;
+  String? name;
+  double? teacherRatio;
+  int? bookPrice;
+  String? classroom;
+  double? profit;
 
-  Teacher({this.id, this.image});
+  BooksProfit(
+      {this.id,
+        this.name,
+        this.teacherRatio,
+        this.bookPrice,
+        this.classroom,
+        this.profit});
 
-  Teacher.fromJson(Map<String, dynamic> json) {
+  BooksProfit.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    image = json['image'];
+    name = json['name'];
+    teacherRatio = json['Teacher_ratio'];
+    bookPrice = json['book_price'];
+    classroom = json['classroom'];
+    profit = json['profit'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
-    data['image'] = image;
+    data['name'] = name;
+    data['Teacher_ratio'] = teacherRatio;
+    data['book_price'] = bookPrice;
+    data['classroom'] = classroom;
+    data['profit'] = profit;
     return data;
   }
 }

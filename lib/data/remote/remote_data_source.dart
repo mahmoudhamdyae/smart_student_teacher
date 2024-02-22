@@ -5,6 +5,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:teacher/domain/models/course.dart';
 
 import '../../core/constants.dart';
+import '../../domain/models/book.dart';
 import '../../domain/models/notification.dart';
 import '../../domain/models/wehda.dart';
 import '../../presentation/resources/strings_manager.dart';
@@ -18,6 +19,7 @@ abstract class RemoteDataSource {
 
   // Remote Data Source
   Future<CoursesResponse> getCourses(int userId);
+  Future<BooksResponse> getBooks(int userId);
   Future<List<Wehda>> getTutorials(int courseId);
   Future<List<NotificationModel>> getNotifications(int userId);
   Future<void> addComment(String comment, int userId, int videoId);
@@ -79,6 +81,17 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
     CoursesResponse coursesResponse = CoursesResponse.fromJson(response.data);
     return coursesResponse;
+  }
+
+  @override
+  Future<BooksResponse> getBooks(int userId) async {
+    await _checkNetwork();
+
+    String url = "${Constants.baseUrl}teacher/books/$userId";
+    final response = await _dio.get(url);
+
+    BooksResponse booksResponse = BooksResponse.fromJson(response.data);
+    return booksResponse;
   }
 
   @override
