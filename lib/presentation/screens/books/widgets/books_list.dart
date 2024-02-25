@@ -7,7 +7,7 @@ import '../../../../domain/models/book.dart';
 
 class BooksList extends StatelessWidget {
 
-  final List<Book> books;
+  final List<BooksProfit> books;
   const BooksList({super.key, required this.books});
 
   @override

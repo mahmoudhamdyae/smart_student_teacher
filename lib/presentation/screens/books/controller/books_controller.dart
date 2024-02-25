@@ -5,7 +5,7 @@ import '../../../../domain/repository/repository.dart';
 
 class BooksController extends GetxController {
 
-  final RxList<Book> books = RxList.empty();
+  final RxList<BooksProfit> books = RxList.empty();
   final RxInt usersCount = 0.obs;
   final RxDouble totalEarn = 0.0.obs;
 
@@ -26,8 +26,7 @@ class BooksController extends GetxController {
     try {
       await _repository.getBooks().then((remoteBooksResponse) {
         _status.value = RxStatus.success();
-        books.value = remoteBooksResponse.books ?? [];
-        // totalEarn.value = remoteBooksResponse.totalEarn ?? 0;
+        books.value = remoteBooksResponse.booksProfit ?? [];
         _getUsersCount();
       });
     } on Exception catch (e) {
@@ -37,7 +36,8 @@ class BooksController extends GetxController {
 
   void _getUsersCount() {
     for (var singleBook in books) {
-      // usersCount.value += singleBook.userCount ?? 0;
+      usersCount.value += int.parse(singleBook.totalQuantity ?? '0');
+      totalEarn.value += singleBook.totalProfit ?? 0.0;
     }
   }
 }

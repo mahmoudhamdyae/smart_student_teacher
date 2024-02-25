@@ -33,7 +33,7 @@ class BooksScreen extends StatelessWidget {
                 } else if (controller.books.isEmpty){
                   return const EmptyScreen(emptyString: AppStrings.noBooks);
                 }
-                final List<Book> books = controller.books;
+                final List<BooksProfit> books = controller.books;
                 return BooksList(
                   books: books,
                 );

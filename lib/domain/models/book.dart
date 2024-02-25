@@ -102,7 +102,8 @@ class BooksProfit {
   double? teacherRatio;
   int? bookPrice;
   String? classroom;
-  double? profit;
+  String? totalQuantity;
+  double? totalProfit;
 
   BooksProfit(
       {this.id,
@@ -110,7 +111,8 @@ class BooksProfit {
         this.teacherRatio,
         this.bookPrice,
         this.classroom,
-        this.profit});
+        this.totalQuantity,
+        this.totalProfit});
 
   BooksProfit.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -118,7 +120,8 @@ class BooksProfit {
     teacherRatio = json['Teacher_ratio'];
     bookPrice = json['book_price'];
     classroom = json['classroom'];
-    profit = json['profit'];
+    totalQuantity = json['total_quantity'];
+    totalProfit = json['total_profit'];
   }
 
   Map<String, dynamic> toJson() {
@@ -128,7 +131,8 @@ class BooksProfit {
     data['Teacher_ratio'] = teacherRatio;
     data['book_price'] = bookPrice;
     data['classroom'] = classroom;
-    data['profit'] = profit;
+    data['total_quantity'] = totalQuantity;
+    data['total_profit'] = totalProfit;
     return data;
   }
 }

@@ -7,7 +7,7 @@ import '../../../resources/styles_manager.dart';
 
 class BookItem extends StatelessWidget {
 
-  final Book book;
+  final BooksProfit book;
   const BookItem({super.key, required this.book});
 
   @override
@@ -48,7 +48,7 @@ class BookItem extends StatelessWidget {
                 ),
                 const SizedBox(height: 8.0,),
                 Text(
-                  'أرباحك: 0 د.ك',
+                  'أرباحك: ${book.totalProfit} د.ك',
                   style: getSmallStyle(
                     color: ColorManager.grey,
                   ),
@@ -59,11 +59,22 @@ class BookItem extends StatelessWidget {
           Positioned(
             top: 12.0,
             left: 8.0,
-            child: Text(
-              book.classroom ?? '',
-              style: getSmallStyle(
-                color: const Color(0xff808080),
-              ),
+            child: Column(
+              children: [
+                Text(
+                  book.classroom ?? '',
+                  style: getSmallStyle(
+                    color: const Color(0xff808080),
+                  ),
+                ),
+                const SizedBox(height: 10.0,),
+                Text(
+                  'عدد المشتريات: ${book.totalQuantity}',
+                  style: getSmallStyle(
+                    color: ColorManager.grey,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
