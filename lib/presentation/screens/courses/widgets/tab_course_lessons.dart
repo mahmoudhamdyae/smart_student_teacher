@@ -12,8 +12,6 @@ class TabCourseLessons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: LessonsWidget(wehdat: Get.find<CoursesController>().tutorials,),
-    );
+    return LessonsWidget(wehdat: Get.find<CoursesController>().tutorials,);
   }
 }

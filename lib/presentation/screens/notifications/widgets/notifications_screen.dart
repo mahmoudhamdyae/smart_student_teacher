@@ -38,15 +38,21 @@ class SubscriptionsScreen extends StatelessWidget {
                   physics: const AlwaysScrollableScrollPhysics(),
                   itemCount: controller.notifications.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return NotificationItem(
-                      notificationTitle: controller.notifications[index].title ?? '',
-                      notificationDesc: controller.notifications[index].body ?? '',
-                      action: () {
-                        controller.selectedNotification.value = controller.notifications[index];
-                        if (controller.selectedNotification.value.route?.type == 'comment') {
-                          Get.to(() => const ReplyCommentScreen());
-                        }
+                    return Dismissible(
+                      key: Key(controller.notifications[index].id.toString()),
+                      onDismissed: (direction) {
+                        controller.delNotification(controller.notifications[index].id ?? -1, index);
                       },
+                      child: NotificationItem(
+                        notificationTitle: controller.notifications[index].title ?? '',
+                        notificationDesc: controller.notifications[index].body ?? '',
+                        action: () {
+                          controller.selectedNotification.value = controller.notifications[index];
+                          if (controller.selectedNotification.value.route?.type == 'comment') {
+                            Get.to(() => const ReplyCommentScreen());
+                          }
+                        },
+                      ),
                     );
                   },
                 );

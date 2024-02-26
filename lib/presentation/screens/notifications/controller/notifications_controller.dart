@@ -52,6 +52,11 @@ class NotificationsController extends GetxController {
     commentEditText.text = comment;
   }
 
+  void delNotification(int notificationId, int index) {
+    _repository.delNotification(notificationId);
+    notifications.removeAt(index);
+  }
+
   @override
   void onClose() {
     super.onClose();

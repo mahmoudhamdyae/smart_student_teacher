@@ -24,9 +24,8 @@ abstract class RemoteDataSource {
   Future<List<Wehda>> getTutorials(int courseId);
   Future<List<NotificationModel>> getNotifications(int userId);
   Future<void> addComment(String comment, int userId, int videoId);
-  // Future<List<Course>> getExamCourses(int userId);
-  // Future<Exam> getExams(int courseId, int term);
   Future<TeacherExamModel> getTeacherExams(int userId);
+  Future<void> delNotification(int notificationId);
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -153,27 +152,11 @@ class RemoteDataSourceImpl extends RemoteDataSource {
       return teacherExam;
   }
 
-  // @override
-  // Future<List<Course>> getExamCourses(int userId) async {
-  //   await _checkNetwork();
-  //
-  //   // String url = "${Constants.baseUrl}examClass/saff/term";
-  //   // var response = await _dio.get(url);
-  //   List<Course> courses = [];
-  //   // for (var singleCourse in response.data['classroom']) {
-  //   //   Course course = Course.fromJson(singleCourse);
-  //   //   courses.add(course);
-  //   // }
-  //   return courses;
-  // }
+  @override
+  Future<void> delNotification(int notificationId) async {
+    await _checkNetwork();
 
-  // @override
-  // Future<Exam> getExams(int courseId, int term) async {
-  //   await _checkNetwork();
-  //
-  //   String url = "${Constants.baseUrl}exam/class/course/term/$courseId/$term";
-  //   var response = await _dio.get(url);
-  //   Exam exam = Exam.fromJson(response.data);
-  //   return exam;
-  // }
+    // String url = "${Constants.baseUrl}teacher/exam/$userId";
+    // await _dio.delete(url);
+  }
 }

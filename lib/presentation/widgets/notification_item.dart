@@ -26,6 +26,7 @@ class NotificationItem extends StatelessWidget {
               color: const Color(0xffF2F2F2),
               width: 1,
             ),
+            color: Color(0xffbfdbfe)
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,13 +34,14 @@ class NotificationItem extends StatelessWidget {
               Text(
                 notificationTitle,
                 style: getLargeStyle(
-                    fontSize: FontSize.s12,
+                  fontSize: FontSize.s16,
+                  color: ColorManager.secondary,
                 ),
               ),
               Text(
                 notificationDesc,
                 style: getSmallStyle(
-                  fontSize: FontSize.s12,
+                  fontSize: FontSize.s14,
                   color: ColorManager.grey,
                 ),
               ),

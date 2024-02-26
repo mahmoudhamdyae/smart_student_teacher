@@ -1,5 +1,4 @@
 import 'package:teacher/domain/models/course.dart';
-import 'package:teacher/domain/models/exam.dart';
 import 'package:teacher/domain/models/notification.dart';
 
 import 'package:teacher/domain/models/wehda.dart';
@@ -84,13 +83,8 @@ class RepositoryImpl extends Repository {
     return await _remoteDataSource.getTeacherExams(_localDataSource.getUserId());
   }
 
-  // @override
-  // Future<List<Course>> getExamCourses() {
-  //   return _remoteDataSource.getExamCourses(_localDataSource.getUserId());
-  // }
-  //
-  // @override
-  // Future<Exam> getExams(int courseId, int term) {
-  //   return _remoteDataSource.getExams(courseId, term);
-  // }
+  @override
+  Future<void> delNotification(int notificationId) async {
+    await _remoteDataSource.delNotification(notificationId);
+  }
 }
