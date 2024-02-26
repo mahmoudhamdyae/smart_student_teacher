@@ -23,21 +23,27 @@ class BooksScreen extends StatelessWidget {
           HomeAppBar(),
           RefreshIndicator(
             onRefresh: () async => await Get.find<BooksController>().getBooks(),
-            child: GetX<BooksController>(
-              init: Get.find<BooksController>(),
-              builder: (BooksController controller) {
-                if (controller.status.isLoading) {
-                  return const LoadingScreen();
-                } else if (controller.status.isError) {
-                  return ErrorScreen(error: controller.status.errorMessage ?? '');
-                } else if (controller.books.isEmpty){
-                  return const EmptyScreen(emptyString: AppStrings.noBooks);
-                }
-                final List<BooksProfit> books = controller.books;
-                return BooksList(
-                  books: books,
-                );
-              },
+            child: ListView(
+              shrinkWrap: true,
+              physics: const AlwaysScrollableScrollPhysics(),
+              children: [
+                GetX<BooksController>(
+                  init: Get.find<BooksController>(),
+                  builder: (BooksController controller) {
+                    if (controller.status.isLoading) {
+                      return const LoadingScreen();
+                    } else if (controller.status.isError) {
+                      return ErrorScreen(error: controller.status.errorMessage ?? '');
+                    } else if (controller.books.isEmpty){
+                      return const EmptyScreen(emptyString: AppStrings.noBooks);
+                    }
+                    final List<BooksProfit> books = controller.books;
+                    return BooksList(
+                      books: books,
+                    );
+                  },
+                ),
+              ],
             ),
           ),
         ],

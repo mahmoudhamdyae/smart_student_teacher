@@ -17,7 +17,7 @@ class ExamsCourseList extends StatelessWidget {
   ListView _buildCoursesList() {
     return ListView.builder(
       shrinkWrap: true,
-      physics: const AlwaysScrollableScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       itemCount: subjects.length,
       itemBuilder: (BuildContext context, int index) {
         return ExamCourseItem(course: subjects[index],);

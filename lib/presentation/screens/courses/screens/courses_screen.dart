@@ -23,21 +23,27 @@ class CoursesScreen extends StatelessWidget {
           HomeAppBar(),
           RefreshIndicator(
             onRefresh: () async => await Get.find<CoursesController>().getCourses(),
-            child: GetX<CoursesController>(
-              init: Get.find<CoursesController>(),
-              builder: (CoursesController controller) {
-                if (controller.status.isLoading) {
-                  return const LoadingScreen();
-                } else if (controller.status.isError) {
-                  return ErrorScreen(error: controller.status.errorMessage ?? '');
-                } else if (controller.courses.isEmpty){
-                  return const EmptyScreen(emptyString: AppStrings.noCourses);
-                }
-                final List<Course> courses = controller.courses;
-                return CoursesList(
-                  courses: courses,
-                );
-              },
+            child: ListView(
+              shrinkWrap: true,
+              physics: const AlwaysScrollableScrollPhysics(),
+              children: [
+                GetX<CoursesController>(
+                  init: Get.find<CoursesController>(),
+                  builder: (CoursesController controller) {
+                    if (controller.status.isLoading) {
+                      return const LoadingScreen();
+                    } else if (controller.status.isError) {
+                      return ErrorScreen(error: controller.status.errorMessage ?? '');
+                    } else if (controller.courses.isEmpty){
+                      return const EmptyScreen(emptyString: AppStrings.noCourses);
+                    }
+                    final List<Course> courses = controller.courses;
+                    return CoursesList(
+                      courses: courses,
+                    );
+                  },
+                ),
+              ],
             ),
           ),
         ],

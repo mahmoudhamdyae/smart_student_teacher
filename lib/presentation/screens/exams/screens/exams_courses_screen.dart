@@ -22,22 +22,28 @@ class ExamsCoursesScreen extends StatelessWidget {
           HomeAppBar(),
           RefreshIndicator(
             onRefresh: () => Get.find<ExamsController>().getTeacherExams(),
-            child: GetX<ExamsController>(
-              init: Get.find<ExamsController>(),
-              builder: (ExamsController controller) {
-                if (controller.status.isLoading) {
-                  return const LoadingScreen();
-                } else if (controller.status.isError) {
-                  return ErrorScreen(error: controller.status.errorMessage ?? '');
-                } else if (controller.courses.isEmpty) {
-                  return const EmptyScreen(emptyString: AppStrings.noExamCourses);
-                } else {
-                  final courses = controller.courses;
-                  return ExamsCourseList(
-                    subjects: courses.toList(),
-                  );
-                }
-              },
+            child: ListView(
+              shrinkWrap: true,
+              physics: const AlwaysScrollableScrollPhysics(),
+              children: [
+                GetX<ExamsController>(
+                  init: Get.find<ExamsController>(),
+                  builder: (ExamsController controller) {
+                    if (controller.status.isLoading) {
+                      return const LoadingScreen();
+                    } else if (controller.status.isError) {
+                      return ErrorScreen(error: controller.status.errorMessage ?? '');
+                    } else if (controller.courses.isEmpty) {
+                      return const EmptyScreen(emptyString: AppStrings.noExamCourses);
+                    } else {
+                      final courses = controller.courses;
+                      return ExamsCourseList(
+                        subjects: courses.toList(),
+                      );
+                    }
+                  },
+                ),
+              ],
             ),
           ),
         ],

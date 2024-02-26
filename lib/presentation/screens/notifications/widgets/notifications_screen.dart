@@ -23,40 +23,46 @@ class SubscriptionsScreen extends StatelessWidget {
           HomeAppBar(),
           RefreshIndicator(
             onRefresh: () async => await Get.find<NotificationsController>().getNotifications(),
-            child: GetX<NotificationsController>(
-              init: Get.find<NotificationsController>(),
-              builder: (NotificationsController controller) {
-                if (controller.status.isLoading) {
-                  return const LoadingScreen();
-                } else if (controller.status.isError) {
-                  return ErrorScreen(error: controller.status.errorMessage ?? '');
-                } else if (controller.notifications.isEmpty){
-                  return const EmptyScreen(emptyString: AppStrings.noNotifications);
-                }
-                return ListView.builder(
-                  shrinkWrap: true,
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  itemCount: controller.notifications.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Dismissible(
-                      key: Key(controller.notifications[index].id.toString()),
-                      onDismissed: (direction) {
-                        controller.delNotification(controller.notifications[index].id ?? -1, index);
+            child: ListView(
+              shrinkWrap: true,
+              physics: const AlwaysScrollableScrollPhysics(),
+              children: [
+                GetX<NotificationsController>(
+                  init: Get.find<NotificationsController>(),
+                  builder: (NotificationsController controller) {
+                    if (controller.status.isLoading) {
+                      return const LoadingScreen();
+                    } else if (controller.status.isError) {
+                      return ErrorScreen(error: controller.status.errorMessage ?? '');
+                    } else if (controller.notifications.isEmpty){
+                      return const EmptyScreen(emptyString: AppStrings.noNotifications);
+                    }
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: const ClampingScrollPhysics(),
+                      itemCount: controller.notifications.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Dismissible(
+                          key: Key(controller.notifications[index].id.toString()),
+                          onDismissed: (direction) {
+                            controller.delNotification(controller.notifications[index].id ?? -1, index);
+                          },
+                          child: NotificationItem(
+                            notificationTitle: controller.notifications[index].title ?? '',
+                            notificationDesc: controller.notifications[index].body ?? '',
+                            action: () {
+                              controller.selectedNotification.value = controller.notifications[index];
+                              if (controller.selectedNotification.value.route?.type == 'comment') {
+                                Get.to(() => const ReplyCommentScreen());
+                              }
+                            },
+                          ),
+                        );
                       },
-                      child: NotificationItem(
-                        notificationTitle: controller.notifications[index].title ?? '',
-                        notificationDesc: controller.notifications[index].body ?? '',
-                        action: () {
-                          controller.selectedNotification.value = controller.notifications[index];
-                          if (controller.selectedNotification.value.route?.type == 'comment') {
-                            Get.to(() => const ReplyCommentScreen());
-                          }
-                        },
-                      ),
                     );
                   },
-                );
-              },
+                ),
+              ],
             ),
           ),
         ],
