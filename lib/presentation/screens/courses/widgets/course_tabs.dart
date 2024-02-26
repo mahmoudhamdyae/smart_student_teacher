@@ -23,7 +23,9 @@ class _CourseTabsState extends State<CourseTabs> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
+      shrinkWrap: true,
+      physics: const ClampingScrollPhysics(),
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
