@@ -156,7 +156,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   Future<void> delNotification(int notificationId) async {
     await _checkNetwork();
 
-    // String url = "${Constants.baseUrl}teacher/exam/$userId";
-    // await _dio.delete(url);
+    String url = "${Constants.baseUrl}teacher/notify/$notificationId";
+    await _dio.delete(url);
   }
 }
