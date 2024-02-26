@@ -1,6 +1,6 @@
 class AppStrings {
   static const appName = "Manadeeb";
-  static const madeBy = 'made by ♥ coding-site.com';
+  static const madeBy = 'made by \u00a9 coding-site.com';
 
   // Error Handler
   static const String noInternetError = "يُرجى التحقق من اتصالك بالإنترنت";
@@ -62,6 +62,8 @@ class AppStrings {
   static const String noteDownloading = 'جارى التحميل';
   static const String noteDownloadError = 'حدث خطأ';
   static const String noteDownloaded = 'تم تحميل المذكرة';
+  static const String examDownloaded = 'تم التحميل';
+  static const String examsAndBanks = 'اختبارات و بنوك';
 
   // Comments Screen
   static const String addComment = 'إضافة تعليق';
@@ -81,4 +83,16 @@ class AppStrings {
   static const updateDialogMessage = 'يتوفر إصدار أحدث من التطبيق، يرجى تحديثه الآن.';
   static const updateDialogButtonLabel = 'تحديث الآن';
   static const updateDialogButtonLabelCancel = 'لاحقًا';
+
+  // Exams
+  static const String noExamCourses = 'لا يوجد كورسات حاليا فى هذه المرحلة بها امتحانات و بنوك';
+  static const exams = 'الاختبارات';
+  static const banks = 'البنوك';
+  static const unsolvedTest = 'اختبارات غير محلولة';
+  static const shortOne = 'قصير أول';
+  static const shortTwo = 'قصير ثان';
+  static const finalReview = 'مراجعة نهائية';
+  static const unsolvedBank = 'بنك غير محلول';
+  static const solvedBank = 'بنك محلول';
+  static const bookTest = 'حل أسئلة الكتاب';
 }

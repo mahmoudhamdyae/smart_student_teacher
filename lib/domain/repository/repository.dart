@@ -1,7 +1,9 @@
 import 'package:teacher/domain/models/book.dart';
 import 'package:teacher/domain/models/course.dart';
 import 'package:teacher/domain/models/notification.dart';
+import 'package:teacher/domain/models/teacher_exam_model.dart';
 
+import '../models/exam.dart';
 import '../models/wehda.dart';
 
 abstract class Repository {
@@ -20,4 +22,7 @@ abstract class Repository {
   Future<List<Wehda>> getTutorials(int courseId);
   Future<List<NotificationModel>> getNotifications();
   Future<void> addComment(String comment, int videoId);
+  // Future<List<Course>> getExamCourses();
+  // Future<Exam> getExams(int courseId, int term);
+  Future<TeacherExamModel> getTeacherExams();
 }

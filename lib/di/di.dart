@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:teacher/presentation/screens/books/controller/books_controller.dart';
+import 'package:teacher/presentation/screens/exams/controller/exams_controller.dart';
 import 'package:teacher/presentation/screens/notifications/controller/notifications_controller.dart';
 
 import '../data/local/local_data_source.dart';
@@ -48,5 +49,6 @@ class GetXDi implements Bindings {
     Get.lazyPut<CoursesController>(() => CoursesController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<BooksController>(() => BooksController(Get.find<Repository>()), fenix: true);
     Get.lazyPut<NotificationsController>(() => NotificationsController(Get.find<Repository>()), fenix: true);
+    Get.lazyPut<ExamsController>(() => ExamsController(Get.find<Repository>()), fenix: true);
   }
 }

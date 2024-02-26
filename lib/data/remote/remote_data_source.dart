@@ -7,6 +7,7 @@ import 'package:teacher/domain/models/course.dart';
 import '../../core/constants.dart';
 import '../../domain/models/book.dart';
 import '../../domain/models/notification.dart';
+import '../../domain/models/teacher_exam_model.dart';
 import '../../domain/models/wehda.dart';
 import '../../presentation/resources/strings_manager.dart';
 import '../network_info.dart';
@@ -23,6 +24,9 @@ abstract class RemoteDataSource {
   Future<List<Wehda>> getTutorials(int courseId);
   Future<List<NotificationModel>> getNotifications(int userId);
   Future<void> addComment(String comment, int userId, int videoId);
+  // Future<List<Course>> getExamCourses(int userId);
+  // Future<Exam> getExams(int courseId, int term);
+  Future<TeacherExamModel> getTeacherExams(int userId);
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -138,4 +142,38 @@ class RemoteDataSourceImpl extends RemoteDataSource {
       }),
     );
   }
+
+  @override
+  Future<TeacherExamModel> getTeacherExams(int userId) async {
+      await _checkNetwork();
+
+      String url = "${Constants.baseUrl}teacher/exam/$userId";
+      var response = await _dio.get(url);
+      TeacherExamModel teacherExam = TeacherExamModel.fromJson(response.data);
+      return teacherExam;
+  }
+
+  // @override
+  // Future<List<Course>> getExamCourses(int userId) async {
+  //   await _checkNetwork();
+  //
+  //   // String url = "${Constants.baseUrl}examClass/saff/term";
+  //   // var response = await _dio.get(url);
+  //   List<Course> courses = [];
+  //   // for (var singleCourse in response.data['classroom']) {
+  //   //   Course course = Course.fromJson(singleCourse);
+  //   //   courses.add(course);
+  //   // }
+  //   return courses;
+  // }
+
+  // @override
+  // Future<Exam> getExams(int courseId, int term) async {
+  //   await _checkNetwork();
+  //
+  //   String url = "${Constants.baseUrl}exam/class/course/term/$courseId/$term";
+  //   var response = await _dio.get(url);
+  //   Exam exam = Exam.fromJson(response.data);
+  //   return exam;
+  // }
 }

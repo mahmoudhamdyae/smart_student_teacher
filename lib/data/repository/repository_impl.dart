@@ -1,9 +1,11 @@
 import 'package:teacher/domain/models/course.dart';
+import 'package:teacher/domain/models/exam.dart';
 import 'package:teacher/domain/models/notification.dart';
 
 import 'package:teacher/domain/models/wehda.dart';
 
 import '../../domain/models/book.dart';
+import '../../domain/models/teacher_exam_model.dart';
 import '../../domain/repository/repository.dart';
 import '../local/local_data_source.dart';
 import '../remote/remote_data_source.dart';
@@ -53,8 +55,8 @@ class RepositoryImpl extends Repository {
   // Remote Data Source
 
   @override
-  Future<CoursesResponse> getCourses() {
-    return _remoteDataSource.getCourses(_localDataSource.getUserId());
+  Future<CoursesResponse> getCourses() async {
+    return await _remoteDataSource.getCourses(_localDataSource.getUserId());
   }
 
   @override
@@ -76,4 +78,19 @@ class RepositoryImpl extends Repository {
   Future<void> addComment(String comment, int videoId) async {
     return await _remoteDataSource.addComment(comment, _localDataSource.getUserId(), videoId);
   }
+
+  @override
+  Future<TeacherExamModel> getTeacherExams() async {
+    return await _remoteDataSource.getTeacherExams(_localDataSource.getUserId());
+  }
+
+  // @override
+  // Future<List<Course>> getExamCourses() {
+  //   return _remoteDataSource.getExamCourses(_localDataSource.getUserId());
+  // }
+  //
+  // @override
+  // Future<Exam> getExams(int courseId, int term) {
+  //   return _remoteDataSource.getExams(courseId, term);
+  // }
 }
