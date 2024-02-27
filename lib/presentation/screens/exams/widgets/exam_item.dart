@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/download_note.dart';
 import '../../../resources/color_manager.dart';
+import '../../../resources/strings_manager.dart';
 import '../../../resources/styles_manager.dart';
 
 class ExamItem extends StatelessWidget {
@@ -33,7 +34,19 @@ class ExamItem extends StatelessWidget {
                 text,
                 style: getSmallStyle(),
               ),
-              const Icon(Icons.download),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                  color: Colors.green,
+                ),
+                child: Text(
+                  AppStrings.download,
+                  style: getSmallStyle(
+                    color: ColorManager.white,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
