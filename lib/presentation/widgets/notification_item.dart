@@ -20,13 +20,9 @@ class NotificationItem extends StatelessWidget {
         borderRadius: const BorderRadius.all(Radius.circular(8.0)),
         child: Container(
           padding: const EdgeInsets.all(8.0),
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-            border: Border.all(
-              color: const Color(0xffF2F2F2),
-              width: 1,
-            ),
-            color: Color(0xffbfdbfe)
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+            color: ColorManager.lightGrey,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

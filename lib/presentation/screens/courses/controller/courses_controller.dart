@@ -69,6 +69,7 @@ class CoursesController extends GetxController {
   }
 
   void _getUsersCount() {
+    usersCount.value = 0;
     for (var singleCourse in courses) {
       usersCount.value += singleCourse.userCount ?? 0;
     }

@@ -35,6 +35,8 @@ class BooksController extends GetxController {
   }
 
   void _getUsersCount() {
+    usersCount.value = 0;
+    totalEarn.value = 0;
     for (var singleBook in books) {
       usersCount.value += int.parse(singleBook.totalQuantity ?? '0');
       totalEarn.value += singleBook.totalProfit ?? 0.0;
