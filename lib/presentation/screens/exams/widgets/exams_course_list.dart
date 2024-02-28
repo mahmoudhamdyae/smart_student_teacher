@@ -30,7 +30,7 @@ class ExamsCourseList extends StatelessWidget {
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
       crossAxisCount: (MediaQuery.of(context).size.width ~/ 300).toInt(),
-      childAspectRatio: 1.8,
+      childAspectRatio: 3.8,
       crossAxisSpacing: 16.0,
       mainAxisSpacing: 16.0,
       children: List.generate(subjects.length, (index) {
