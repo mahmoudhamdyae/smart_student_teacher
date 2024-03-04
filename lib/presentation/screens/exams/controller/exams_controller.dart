@@ -30,10 +30,28 @@ class ExamsController extends GetxController {
         teacherExams.value = teacherExamModel;
         courses.clear();
         teacherExamModel.teacherExam?.forEach((singleExam) {
-          courses.add(singleExam.course!);
+          bool isInCourses = false;
+          for (var singleCourse in courses) {
+            if (singleCourse.id == singleExam.course?.id) {
+              isInCourses = true;
+              break;
+            }
+          }
+          if (!isInCourses) {
+            courses.add(singleExam.course!);
+          }
         });
         teacherExamModel.teacherBank?.forEach((singleBank) {
-          courses.add(singleBank.course!);
+          bool isInCourses = false;
+          for (var singleCourse in courses) {
+            if (singleCourse.id == singleBank.course?.id) {
+              isInCourses = true;
+              break;
+            }
+          }
+          if (!isInCourses) {
+            courses.add(singleBank.course!);
+          }
         });
       });
     } on Exception catch (e) {
